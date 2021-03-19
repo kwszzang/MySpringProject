@@ -5,12 +5,12 @@
   
   <configuration>
   	<typeAliases>
-	
-
+		<typeAlias alias = "MyMember" type="bean.Member"/>
   	</typeAliases>
+  	
+  	
   	<mappers>
-		
-		
+		<mapper resource="mybatis/mapmember.xml"/>
   	</mappers>
   	
   </configuration>
