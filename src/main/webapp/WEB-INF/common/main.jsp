@@ -25,7 +25,7 @@
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
 			<div style="margin-left: 94%;">
-					<a style="text-decoration: none;" href = "#">login</a>
+					<a style="text-decoration: none;" href = "<%=contextPath%>/login.me">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 	</div>
 	<div style="text-align: center; width: 100%;height: auto; ">
 		<a href = "<%=contextPath%>/main.co" style="text-decoration: none;">
-			<span style="font-family: Myriad;font-size: 35px;font-weight: 700;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</span>
+			<h1 style="font-size: 35px;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</h1>
 		</a>
 	</div>
 	
@@ -57,7 +57,7 @@
 	</div>
 	
 		<!-- 커뮤니티 메뉴  -->
-		<div id="commuity_menu" style="position: absolute;top: 37%;left: 34.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="commuity_menu" style="position: absolute;top: 38.5%;left: 34.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">커뮤니티 메뉴</a><br>
@@ -66,7 +66,7 @@
 		</div>
 		
 		<!-- 노래 메뉴  -->
-		<div id="song_menu" style="position: absolute;top: 37%;left: 40.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="song_menu" style="position: absolute;top: 38.5%;left: 40.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">노래 메뉴</a><br>
@@ -75,7 +75,7 @@
 		</div>
 		
 		<!-- 앨범 메뉴  -->
-		<div id="album_menu" style="position: absolute;top: 37%;left: 46.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="album_menu" style="position: absolute;top: 38.5%;left: 46.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">앨범 메뉴</a><br>
@@ -84,7 +84,7 @@
 		</div>
 		
 		<!-- 동영상 메뉴  -->
-		<div id="video_menu" style="position: absolute;top: 37%;left: 52.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="video_menu" style="position: absolute;top: 38.5%;left: 52.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">동영상 메뉴</a><br>
@@ -93,7 +93,7 @@
 		</div>
 		
 		<!-- 검색 메뉴  -->
-		<div id="search_menu" style="position: absolute;top: 37%;left: 58.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="search_menu" style="position: absolute;top: 38.5%;left: 58.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">검색 메뉴</a><br>
@@ -105,7 +105,7 @@
 		<div class="swiper-container" style="float:left; width:100%; height:892px; background-color: white; margin-top: 5%; margin-left: 12%;">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" style="width:100%; height:892px;">
-					<video src="<%=contextPath %>/resources/img/videoplayback.mp4" autoplay muted loop width="80%;"></video>
+					 <video src="<%=contextPath %>/resources/img/videoplayback.mp4" autoplay muted loop width="80%;"></video> 
 				</div>
 				
 				<div class="swiper-slide" style="width:100%; height:892px;">
