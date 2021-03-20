@@ -85,9 +85,14 @@
 			<input type="text" value = "010" disabled="disabled" style="width: 90; padding-left: 1.5%;">
 			<input type = "text" placeholder="핸드폰 번호(-없이 숫자만)" name = "phone"style="width: 360;">
 				<br><br>
-			<input type = "text" placeholder="이메일" name = "email"><br><br>
+			<div style="margin-left: 6.5%;">
+				<input type = "text" placeholder="이메일" name = "email" id = "email">
+				<input type = "button" value = "이메일 인증" style="width: 120;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">	
+				<br><br>
+			</div>
+			
 			<div style="margin-left: 7.5%;">
-				<input type = "text" name = "zipcode" placeholder="우편 번호" disabled="disabled" id = "zipcode" >
+				<input type = "text" name = "postcode" placeholder="우편 번호" disabled="disabled" id = "postcode" >
 				<input type = "button" value = "우편 번호 검색" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;"onclick="DaumPostcode()">	
 				<br>
 			</div>
@@ -105,58 +110,69 @@
 		</form>
 	</div>
 	
-	
+<%-- <script src="<%=contextPath %>/resources/signin/signin.js"></script> --%>
 <!-- 카카오 지도.api 참고함 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function DaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+<script type="text/javascript">
+function DaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var addr = ''; // 주소 변수
-                var extraAddr = ''; // 참고항목 변수
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
 
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                    addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                    addr = data.jibunAddress;
-                }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    document.getElementById("address1").value = extraAddr;
-                
-                } else {
-                    document.getElementById("zipcode").value = '';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('zipcode').value = data.zonecode;
-                document.getElementById("address1").value = addr+extraAddr;
-                // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("address2").focus();
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
             }
-        }).open();
-    }
-</script>
 
+            // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+            if(data.userSelectedType === 'R'){
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                // 조합된 참고항목을 해당 필드에 넣는다.
+                document.getElementById("address1").value = extraAddr;
+            
+            } else {
+                document.getElementById("postcode").value = '';
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('postcode').value = data.zonecode;
+            document.getElementById("address1").value = addr+extraAddr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("address2").focus();
+            self.close();
+        }
+    }).open();
+}
+
+
+$("#email").on("propertychange change keyup paste input", function(){
+	var reciveremail = $('#email').val();
+	console.log(reciveremail);
+	
+	$('#email_btn').click(function(reciveremail){
+		location.href = '/emailcheck.me?reciveremail=' + reciveremail;
+	});
+});
+
+</script>
 </body>
 </html>

@@ -1,22 +1,22 @@
 package bean;
 
 public class Member {
-	private String id;
+	private String mid;
 	private String name;
 	private int gender;
 	private int age;
 	private String phone;
 	private String email;
-	private int zipcode;
+	private int postcode;
 	private String address1;
 	private String address2;
 	
 	
-	public String getId() {
-		return id;
+	public String getMid() {
+		return mid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 	public String getName() {
 		return name;
@@ -48,11 +48,11 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getZipcode() {
-		return zipcode;
+	public int getPostcode() {
+		return postcode;
 	}
-	public void setZipcode(int zipcode) {
-		this.zipcode = zipcode;
+	public void setPostcode(int postcode) {
+		this.postcode = postcode;
 	}
 	public String getAddress1() {
 		return address1;
