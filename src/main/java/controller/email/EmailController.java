@@ -3,23 +3,22 @@ package controller.email;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Email;
 
-@Controller // 컨트롤러 어노테이션 선언
-@RequestMapping("email/*") // 공통적인 매핑 주소
+@Controller
 public class EmailController {
 	
 	final String sendername = "김원식";
 	final String senderemail = "kwsic2089@gmail.com";
 	final String subject = "MySpringProject에서 보내드리는 인증 번호입니다.";
+	
 	private ModelAndView mav = null;
+	
 	@ModelAttribute("email")
 	public Email email() {
 		return new Email() ;
@@ -34,7 +33,7 @@ public class EmailController {
  
  
     @GetMapping("emailcheck.me") // 확인 (메일발송) 버튼을 누르면 맵핑되는 메소드
-    public ModelAndView send(
+    public void send(
     		@ModelAttribute Email email, 
     		@RequestParam String reciveremail) {
     	
@@ -55,6 +54,5 @@ public class EmailController {
             e.printStackTrace();
             this.mav.addObject("message", "이메일 발송 실패..."); // 이메일 발송이 실패되었다는 메시지를 출력
         }
-        return this.mav; 
     }
 }

@@ -41,10 +41,9 @@ public class MemberLoginController {
 		Member bean = mdao.SelectById(id,password);
 		String message = "";
 		if(bean == null) {
-			message = "아이디나 비밀 번호가 잘못되었습니다.";
+			message = "아이디나 비밀번호가 잘못되었습니다.";
 			
 			this.mav.addObject("message", message);
-			
 			this.mav.setViewName("redirect:/login.me");
 		}else {
 			message = "로그인이 완료되었습니다.\n메인화면으로 이동합니다.";

@@ -164,20 +164,19 @@ function DaumPostcode() {
 }
 
 
-$("#email").keyup( function(){
+/* $("#email").keyup( function(){
+	var reciveremail = $('#email').val();
+}); */
+$('#email_btn').click(function(){
+	var str = confirm('입력하신 이메일로 인증 번호를 전송하겠습니까?');
 	var reciveremail = $('#email').val();
 	console.log(reciveremail);
+    if (str == true) {
+    	location.href = '${pageContext.request.contextPath}/emailcheck.me?reciveremail=' + reciveremail;
+    } else {
+        return false;
+    }
 	
-	$('#email_btn').click(function(reciveremail){
-		var str = confirm('입력하신 이메일로 인증 번호를 전송하겠습니까?');
-
-	    if (str == true) {
-	    	location.href = '/emailcheck.me?reciveremail=' + reciveremail;
-	    } else {
-	        return false;
-	    }
-		
-	});
 });
 
 </script>
