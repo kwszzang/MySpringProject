@@ -48,7 +48,7 @@ public class MemberSignUpController {
 		if(error.hasErrors()) {
 			System.out.println("유효성 검사 문제");
 			
-			this.mav.setViewName("redirect:/signup.me");
+			this.mav.setViewName("meSignUpForm");
 		}else {
 			System.out.println("유효성 검사 통과");
 //			//인설트dao 할거 

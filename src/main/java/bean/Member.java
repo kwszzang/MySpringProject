@@ -16,7 +16,7 @@ public class Member {
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
 	@Pattern(regexp = "\\d{4}[/]\\d{2}[/]\\d{2}", message = "생일은 YYYY/MM/DD 형식으로 입력해 주세요.")
-	private int age;
+	private String age;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String password;
@@ -28,7 +28,7 @@ public class Member {
 	private String email;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
-	private int postcode;
+	private String postcode;
 	private String address1;
 	private String address2;
 	
@@ -57,10 +57,10 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getPhone() {
@@ -75,10 +75,10 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPostcode() {
+	public String getPostcode() {
 		return postcode;
 	}
-	public void setPostcode(int postcode) {
+	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
 	public String getAddress1() {

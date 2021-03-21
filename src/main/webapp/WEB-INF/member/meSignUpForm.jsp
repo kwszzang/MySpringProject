@@ -66,11 +66,13 @@
 	<div style="margin-top: 5%; text-align: center;">
 		<c:set var="apppath" value="<%=contextPath%>"/>
 		
-		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" > 
-		
+		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" >
+		 
+			<input id = "isCheck" type="text" name="isCheck" value="false">
+			
 				<p style="margin-left: -20.5%;">계정 정보</p>
 				<div style="margin-left: 6%;">
-					<form:input path = "mid" id = "mid" type = "text" name = "mid" placeholder="아이디" />
+					<form:input path = "mid" onkeyup="isCheckFalse();" id = "mid" type = "text" name = "mid" placeholder="아이디" />
 					<input id = "idck_btn" type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">
 					<form:errors path = "mid" cssClass = "err"/>
 					<div id = "idcheck"></div>	
@@ -118,7 +120,8 @@
 				<br><br><br>
 				<hr style="width: 35%;">
 				<br>
-			<input type = "submit" value = "가입하기" style="width: 150px;text-align: center;padding-right: 11px;padding-bottom: 7px;background-color:#9c9c9c; color: white;">
+			<input type = "submit" value = "가입하기" onclick="return checkForm();"
+			 style="width: 150px;text-align: center;padding-right: 11px;padding-bottom: 7px;background-color:#9c9c9c; color: white;">
 				<br>
 			<div style="margin-top: 8%;">
 			</div>
@@ -220,9 +223,6 @@ $(".sendMail").click(function() {// 메일 입력 유효성 검사
 	}
 });
 
-
-var idck = 0;
-
 $(function() {
     $("#idck_btn").click(function() {
         
@@ -234,7 +234,7 @@ $(function() {
             data : userid,
             url : "idcheck.me",
             dataType : "json",
-            contentType: "application/json; charset=UTF-8",
+            contentType: "application/json;charset=UTF-8",
             success : function(data) {
                 if (data.cnt > 0) {//아이디 중복 o 
                     
@@ -251,7 +251,7 @@ $(function() {
                     $("#psw").focus();
                     
                     
-                    idck = 1;
+                    document.getElementById('isCheck').value =true;
                     
                 }
             },
@@ -262,6 +262,18 @@ $(function() {
         });
     });
 });
+
+function checkForm(){ /* 회원 가입 버튼 클릭*/
+	var isCheck = $('#isCheck').val() ;
+	if(isCheck == 'false'){
+		alert('아이디 중복 체크를 해주세용.');	
+		return false ;	
+	}
+}
+function isCheckFalse() {
+	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
+	 document.getElementById('isCheck').value =false;
+}
 </script>
 </body>
 </html>

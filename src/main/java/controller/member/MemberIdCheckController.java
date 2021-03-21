@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import dao.MemberDao;
 
@@ -24,8 +25,7 @@ public class MemberIdCheckController {
 	}
 	
 	 @RequestMapping("idcheck.me")
-	 @ResponseBody
-	 public Map<Object, Object> doPost(
+	 public @ResponseBody Map<Object, Object> doPost(
 	    		@RequestBody String mid) {
 	        System.out.println("아이디 중복체크 컨트롤러입니다." +mid);
 	        int count = 0;
