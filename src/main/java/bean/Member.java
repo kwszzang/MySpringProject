@@ -1,17 +1,58 @@
 package bean;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Member {
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Length(min = 6, max = 15,message = "아이디는 최소 6자리, 최대 15자리 입니다.")
 	private String mid;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Length(min = 2, max = 10,message = "이름은 최소 2자리, 최대 10자리 입니다.")
 	private String name;
-	private int gender;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Pattern(regexp = "\\d{4}[/]\\d{2}[/]\\d{2}", message = "생일은 YYYY/MM/DD 형식으로 입력해 주세요.")
 	private int age;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	private String password;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	private String passwordcheck;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String phone;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Length( max = 10,message = "이메일은 최대 20자리 입니다.")
 	private String email;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
 	private int postcode;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String address1;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String address2;
 	
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPasswordcheck() {
+		return passwordcheck;
+	}
+	public void setPasswordcheck(String passwordcheck) {
+		this.passwordcheck = passwordcheck;
+	}
 	public String getMid() {
 		return mid;
 	}
@@ -23,12 +64,6 @@ public class Member {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public int getGender() {
-		return gender;
-	}
-	public void setGender(int gender) {
-		this.gender = gender;
 	}
 	public int getAge() {
 		return age;

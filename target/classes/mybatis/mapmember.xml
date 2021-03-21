@@ -7,7 +7,10 @@
 			select * from member where mid = #{id} and password = #{password}
 		</select>
 		
-
+		<insert id="SiginInData" parameterType="MyMember">
+			insert into member
+			values(#{mid}, #{password}, #{name}, #{age}, #{phone}, #{email}, #{postcode}, #{address1}, #{address2})
+		</insert>
 	</mapper>
 	
 	

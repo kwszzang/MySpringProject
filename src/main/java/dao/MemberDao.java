@@ -23,4 +23,8 @@ public class MemberDao {
 		return this.abcd.selectOne(namespace + "SelectById", map);
 	}
 
+	public int SiginInData(Member xxx) {
+		return this.abcd.insert(namespace + "SiginInData", xxx);
+	}
+
 }

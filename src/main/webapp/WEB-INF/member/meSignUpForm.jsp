@@ -35,6 +35,9 @@
     background: hsla(0,0%,100%,.8);
     background-clip: padding-box;
 	}
+	.err{
+    color: red;
+	}
 </style>
 </head>
 <body>
@@ -61,56 +64,64 @@
 		<p>이미 ID를 가지고 계십니까?<a href = "#" style="color: #06c;font-size: 14;">찾아보기></a></p>
 	</div>
 	<div style="margin-top: 5%; text-align: center;">
-		<form action="<%=contextPath %>/signin.me" method="post">
+		<c:set var="apppath" value="<%=contextPath%>"/>
+		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" role="form" name="myform" > 
 				<p style="margin-left: -20.5%;">계정 정보</p>
 				<div style="margin-left: 6%;">
-					<input type = "text" name = "id" placeholder="아이디" >
-					<input type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">	
+					<form:input path = "mid" id = "mid" type = "text" name = "mid" placeholder="아이디" />
+					<input type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">
+					<form:errors path = "mid" cssClass = "err"/>	
 				</div>
 					<br>
 					
-				<input type = "password" name = "password" placeholder="비밀번호">
+				<form:input path = "password" type = "password" name = "password" placeholder="비밀번호"/>
 					<br>
-				<input type = "password" name = "passwordcheck" placeholder="비밀번호 확인"	>
+				<form:input path = "passwordcheck" type = "password" name = "passwordcheck" placeholder="비밀번호 확인"	/>
+				<form:errors path = "password" cssClass = "err"/>
 					<br><br>	
 					<hr style="width: 35%;">
 				
 				<p style="margin-left: -20.5%;">회원 정보</p>
-			<input type = "text" name ="name" placeholder="이름">
+			<form:input path = "name" type = "text" name ="name" placeholder="이름"/>
+			<form:errors path = "name" cssClass = "err"/>
 				<br><br>
 				
-			<input type = "text" name ="age" placeholder="생일(YYYY-MM-DD)">
+			<form:input path = "age" type = "text" name ="age" placeholder="생일(YYYY/MM/DD)"/>
+			<form:errors path = "age" cssClass = "err"/>
 				<br><br>
 				
 			<input type="text" value = "010" disabled="disabled" style="width: 90; padding-left: 1.5%;">
-			<input type = "text" placeholder="핸드폰 번호(-없이 숫자만)" name = "phone"style="width: 360;">
+			<form:input path = "phone" type = "text" placeholder="핸드폰 번호(-없이 숫자만)" name = "phone" style="width: 360;"/>
+			<form:errors path = "phone" cssClass = "err"/>
 				<br><br>
 			<div style="margin-left: 6.5%;">
-				<input type = "text" placeholder="이메일" name = "email" id = "email">
-				<input type = "button" value = "이메일 인증" style="width: 120;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">	
+				<form:input path = "email" type = "text" placeholder="이메일" name = "email" id = "email"/>
+				<input type = "button" value = "이메일 인증" style="width: 120;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
+				<form:errors path = "email" cssClass = "err"/>	
 				<br><br>
 			</div>
 			
 			<div style="margin-left: 7.5%;">
-				<input type = "text" name = "postcode" placeholder="우편 번호" disabled="disabled" id = "postcode" >
-				<input type = "button" value = "우편 번호 검색" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;"onclick="DaumPostcode()">	
+				<form:input path = "postcode" type = "text" name = "postcode" placeholder="우편 번호" disabled="disabled" id = "postcode" />
+				<input type = "button" value = "우편 번호 검색" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;"onclick="DaumPostcode()">
+				<form:errors path = "postcode" cssClass = "err"/>	
 				<br>
 			</div>
-			<input type="text" name = "address1" placeholder="도로명 주소" disabled="disabled" id = "address1">
+			<form:input path = "address1" type="text" name = "address1" placeholder="도로명 주소" disabled="disabled" id = "address1"/>
+			<form:errors path = "address1" cssClass = "err"/>
 				<br>
-			<input type="text" name = "address2" placeholder="상세 주소" id = "address2">
+			<form:input path = "address2" type="text" name = "address2" placeholder="상세 주소" id = "address2"/>
+			<form:errors path = "address2" cssClass = "err"/>
 				<br><br><br>
 				<hr style="width: 35%;">
 				<br>
-			<input type = "submit" value = "가입하기" style="width: 150px;text-align: center;padding-right: 11px;padding-bottom: 7px;background-color:#9c9c9c; color: white;">	
+			<input type = "submit" value = "가입하기" style="width: 150px;text-align: center;padding-right: 11px;padding-bottom: 7px;background-color:#9c9c9c; color: white;">
 				<br>
-			<span id = guide></span>
 			<div style="margin-top: 8%;">
 			</div>
-		</form>
+		</form:form>
 	</div>
 	
-<%-- <script src="<%=contextPath %>/resources/signin/signin.js"></script> --%>
 <!-- 카카오 지도.api 참고함 -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
@@ -206,6 +217,15 @@ $(".sendMail").click(function() {// 메일 입력 유효성 검사
 	}
 });
 
+
+/* $('#mid').keyup( function(){
+var str = $('#mid').val();
+
+if(str.length > 15 || str.length <6){
+	$('#mid').css('color','red');
+	$('#mid').val('아이디는 최소 6자리, 최대 15자리 입니다.');
+}
+});  */
 </script>
 </body>
 </html>

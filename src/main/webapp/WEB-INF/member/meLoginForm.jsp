@@ -59,7 +59,7 @@
 					<h5 >ID는 MySpringProject에 로그인할 때 사용하는 ID입니다.</h5><br><br>
 					<input id = "login" type = "submit" value = "로그인" style="cursor: pointer;"><br><br>
 					<a href ="#" style="font-weight: 600;">ID또는 암호를 잊으셨습니까?</a><br><br>
-					<a href ="<%=contextPath %>/signin.me" style="font-weight: 600;">ID가 없으신가요? 지금 생성.</a>
+					<a href ="<%=contextPath %>/signup.me" style="font-weight: 600;">ID가 없으신가요? 지금 생성.</a>
 				</div>
 			</form>
 		</div>
