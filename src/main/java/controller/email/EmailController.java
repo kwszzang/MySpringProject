@@ -1,11 +1,13 @@
 package controller.email;
 
-import javax.inject.Inject;
 
+import java.util.Random;
+
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Email;
@@ -27,32 +29,25 @@ public class EmailController {
 	public EmailController() {
 		this.mav= new ModelAndView();
 	}
-	
-    @Inject
-    EmailService emailService; // 서비스를 호출하기위한 의존성 주입
+		@PostMapping("CheckMail") // AJAX와 URL을 매핑시켜줌 
+		@ResponseBody  //AJAX후 다시 응답을 보내는게 아니기 때문에 적어줌, 안 적으면 이메일이 가도 개발자 도구에서 404오류가 뜸
+		public void SendMail(String mail) {
+			Random random=new Random();  //난수 생성을 위한 랜덤 클래스
+			String key="";  //인증번호 
+
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setTo(mail); //스크립트에서 보낸 메일을 받을 사용자 이메일 주소 
+			//입력 키를 위한 코드
+			for(int i =0; i<3;i++) {
+				int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+				key+=(char)index;
+			}
+			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
+			key+=numIndex;
+			message.setSubject("인증번호 입력을 위한 메일 전송");
+			message.setText("인증 번호 : "+key);
+			javaMailSender.send(message);
+		}
  
  
-    @GetMapping("emailcheck.me") // 확인 (메일발송) 버튼을 누르면 맵핑되는 메소드
-    public void send(
-    		@ModelAttribute Email email, 
-    		@RequestParam String reciveremail) {
-    	
-    	email.setSenderName(sendername);
-    	email.setSenderMail(senderemail);
-    	email.setReceiveMail(reciveremail);
-    	email.setSubject(subject);
-    	email.setMessage("test");
-    	
-    	
-    	System.out.println("입력한 메일 주소 : "+reciveremail);
-        try {
- 
-            //emailService.sendMail(email); // dto (메일관련 정보)를 sendMail에 저장함
-            this.mav.addObject("message", "이메일이 발송되었습니다."); // 이메일이 발송되었다는 메시지를 출력시킨다.
- 
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.mav.addObject("message", "이메일 발송 실패..."); // 이메일 발송이 실패되었다는 메시지를 출력
-        }
-    }
 }

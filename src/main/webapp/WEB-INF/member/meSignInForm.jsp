@@ -171,12 +171,39 @@ $('#email_btn').click(function(){
 	var str = confirm('입력하신 이메일로 인증 번호를 전송하겠습니까?');
 	var reciveremail = $('#email').val();
 	console.log(reciveremail);
-    if (str == true) {
-    	location.href = '${pageContext.request.contextPath}/emailcheck.me?reciveremail=' + reciveremail;
-    } else {
-        return false;
-    }
+	if(reciveremail != ""){
+		 if (str == true) {
+		    	location.href = '${pageContext.request.contextPath}/emailcheck.me?reciveremail=' + reciveremail;
+		    } else {
+		        return false;
+		    }
+	}else{
+		alert('이메일을 입력하세요.');
+	}
+   
 	
+});
+
+
+$(".sendMail").click(function() {// 메일 입력 유효성 검사
+	var mail = $("#email").val(); //사용자의 이메일 입력값. 
+	
+	if (mail == "") {
+		alert("메일 주소가 입력되지 않았습니다.");
+	} else {
+		mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
+		$.ajax({
+			type : 'post',
+			url : '/CheckMail.me',
+			data : {
+				mail:mail
+				},
+			dataType :'json',
+
+		});
+		alert("인증번호가 전송되었습니다.") 
+		isCertification=true; //추후 인증 여부를 알기위한 값
+	}
 });
 
 </script>
