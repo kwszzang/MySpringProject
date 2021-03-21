@@ -47,14 +47,16 @@ public class MemberSignUpController {
 		
 		if(error.hasErrors()) {
 			System.out.println("유효성 검사 문제");
+			
 			this.mav.setViewName("redirect:/signup.me");
 		}else {
 			System.out.println("유효성 검사 통과");
-			//인설트dao 할거 
-			int cnt = - 9999;
-			cnt = this.mdao.SiginInData(xxx);
-			//로그인 화면으로 이동
-			this.mav.setViewName("redirect:/login.me");
+//			//인설트dao 할거 
+//			int cnt = - 9999;
+//			cnt = this.mdao.SiginInData(xxx);
+//			//로그인 화면으로 이동
+//			this.mav.setViewName("redirect:/login.me");
+			this.mav.setViewName("redirect:/signup.me");
 		}
 		return this.mav;
 		

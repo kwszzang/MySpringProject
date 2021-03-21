@@ -11,6 +11,10 @@
 			insert into member
 			values(#{mid}, #{password}, #{name}, #{age}, #{phone}, #{email}, #{postcode}, #{address1}, #{address2})
 		</insert>
+		
+		<select id="IdCheck" parameterType="String" resultType="Integer">
+			select count(*) from member where mid = #{mid}
+		</select>
 	</mapper>
 	
 	

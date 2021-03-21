@@ -65,16 +65,19 @@
 	</div>
 	<div style="margin-top: 5%; text-align: center;">
 		<c:set var="apppath" value="<%=contextPath%>"/>
-		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" role="form" name="myform" > 
+		
+		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" > 
+		
 				<p style="margin-left: -20.5%;">계정 정보</p>
 				<div style="margin-left: 6%;">
 					<form:input path = "mid" id = "mid" type = "text" name = "mid" placeholder="아이디" />
-					<input type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">
-					<form:errors path = "mid" cssClass = "err"/>	
+					<input id = "idck_btn" type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">
+					<form:errors path = "mid" cssClass = "err"/>
+					<div id = "idcheck"></div>	
 				</div>
 					<br>
 					
-				<form:input path = "password" type = "password" name = "password" placeholder="비밀번호"/>
+				<form:input id = "psw" path = "password" type = "password" name = "password" placeholder="비밀번호"/>
 					<br>
 				<form:input path = "passwordcheck" type = "password" name = "passwordcheck" placeholder="비밀번호 확인"	/>
 				<form:errors path = "password" cssClass = "err"/>
@@ -218,14 +221,47 @@ $(".sendMail").click(function() {// 메일 입력 유효성 검사
 });
 
 
-/* $('#mid').keyup( function(){
-var str = $('#mid').val();
+var idck = 0;
 
-if(str.length > 15 || str.length <6){
-	$('#mid').css('color','red');
-	$('#mid').val('아이디는 최소 6자리, 최대 15자리 입니다.');
-}
-});  */
+$(function() {
+    $("#idck_btn").click(function() {
+        
+        var userid =  $("#mid").val(); 
+        
+        $.ajax({
+            async: true,
+            type : 'POST',
+            data : userid,
+            url : "idcheck.me",
+            dataType : "json",
+            contentType: "application/json; charset=UTF-8",
+            success : function(data) {
+                if (data.cnt > 0) {//아이디 중복 o 
+                    
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요."+data.cnt);
+                    $("#mid").addClass("has-error")
+                    $("#mid").removeClass("has-success")
+                    $("#mid").focus();
+                    
+                
+                } else {//아이디 중복 x
+                    alert("사용가능한 아이디입니다."+data.cnt);
+                    $("#mid").addClass("has-success")
+                    $("#mid").removeClass("has-error")
+                    $("#psw").focus();
+                    
+                    
+                    idck = 1;
+                    
+                }
+            },
+            error : function(error) {
+                
+                alert("error : " + error);
+            }
+        });
+    });
+});
 </script>
 </body>
 </html>

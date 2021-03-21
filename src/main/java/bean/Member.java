@@ -20,24 +20,16 @@ public class Member {
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String password;
-	
-	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String passwordcheck;
-	
-	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String phone;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
-	@Length( max = 10,message = "이메일은 최대 20자리 입니다.")
+	@Length( max = 20,message = "이메일은 최대 20자리 입니다.")
 	private String email;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
 	private int postcode;
-	
-	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String address1;
-	
-	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String address2;
 	
 	
