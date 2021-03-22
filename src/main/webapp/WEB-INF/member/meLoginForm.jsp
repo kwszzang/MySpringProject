@@ -50,11 +50,6 @@
 		</a>
 	</div>
 	
-	<div style="text-align: center; width: 100%;height: auto; ">
-		<a href = "<%=contextPath%>/main.co" style="text-decoration: none;">
-			<span style="font-family: Myriad;font-size: 35px;font-weight: 700;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</span>
-		</a>
-	</div>
 	<div style="margin-left: 40%;margin-top: 4%;">
 		<h2 style="text-align: left;margin-left: 26%;margin-top: 4%;font-size: 35px;">로그인하십시오.</h2>
 		<form name = "form" action="<%=contextPath %>/login.me" method="post">
@@ -77,11 +72,9 @@
 		</div>
 		
 		
-		<!-- alert 용 메세지  -->
-		<input id = "message" type = "hidden" value = "${message }">
 </body>
 <script type="text/javascript">
-var message = "";
+/* var message = "";
 
 $(function () {
 	message = $('#message').val();
@@ -92,6 +85,6 @@ $('#login').click(function () {
 	if(message != ""){
 		alert(message);
 	}
-});
+}); */
 </script>
 </html>

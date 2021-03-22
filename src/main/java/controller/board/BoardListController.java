@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,7 +84,7 @@ public class BoardListController {
 		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
 		mav.addObject("pagingStatus", pageInfo.getPagingStatus());
 		
-		System.out.println(pageInfo.getPagingHtml());
+		//System.out.println(pageInfo.getPagingHtml());
 		// 검색 필드의 상태 값 저장을 위한 항목들  
 		mav.addObject("mode", parameters.getMode());
 		mav.addObject("keyword", parameters.getKeyword());
@@ -95,6 +96,7 @@ public class BoardListController {
 		
 		return this.mav;
 	}
+	
 	
 	@RequestMapping("test.bo")
 	public @ResponseBody String test(){

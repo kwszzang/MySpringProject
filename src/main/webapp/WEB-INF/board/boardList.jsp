@@ -53,13 +53,13 @@
 		</a>
 	</div>
 	
-	<div>
+	<div style="width: 60%;margin-left: 24%;height: 100%;">
 		<span>국내 게시판</span>
 		<hr>
-		<table border="1">
+		<table border="1" style="width: 100%">
 		<tr>
 		<td colspan="10" align="center">
-						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/boardlist.bo" method="get">
+						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/boardlist.bo" method="post">
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
 									<option value="all" selected="selected">-- 선택하세요---------
@@ -89,9 +89,9 @@
 			<c:forEach var = "brd" items="${lists }">
 			<tr>
 				<td>${brd.seq_brd }</td>
-				<td>테스트</td>
-				<td>테스트</td>
-				<td>테스트</td>
+				<td>${brd.brd_subject }</td>
+				<td>${brd.mid }</td>
+				<td>${brd.brd_inputdate }</td>
 				<td>${bean.remark}</td>
 			</tr>
 			</c:forEach>

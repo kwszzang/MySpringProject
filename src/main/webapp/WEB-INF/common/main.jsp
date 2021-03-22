@@ -20,6 +20,12 @@
 	<div style="background-color: #5801FF; height: 120px; padding-top: 3%;">
 		<div style="text-align: center;font-family: Myriad;font-size: 35px;font-weight: 700;letter-spacing: 0.2px;line-height: 1.5;color: yellow;">
 			<span>이벤트 문구</span><br>
+			<button onclick="test()">xxxxx</button>
+			<script type="text/javascript">
+				function test() {
+					location.href='login.me';
+				}
+			</script>
 		</div>
 	</div>
 	<div>
@@ -141,9 +147,11 @@
 		<p style="color: #868686; font-weight: bold;">Created by Kim Wonsik</p>
 	</div>
 	
+	
 </body>
 
 <script type="text/javascript">
+
 var slide_state =0;
 
 function slidedown(value) {

@@ -1,6 +1,9 @@
 package controller.member;
 
+import java.net.http.HttpResponse;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,14 +30,23 @@ public class MemberIdCheckController {
 	 @PostMapping(value ="idcheck.me",produces = "application/json; charset=utf8")
 	 @ResponseBody
 	 public HashMap<String, Object> doPost(
-	    		@RequestBody String mid) {
-	        System.out.println("아이디 중복체크 컨트롤러입니다." +mid);
-	        int count = 0;
-	        HashMap<String, Object> map = new HashMap<String, Object>();
-	        count = mdao.IdCheck(mid);
-	        map.put("cnt", count);
-	        System.out.println("다오 클래스 실행후 count 값입니다. " + count);
-	        return map;
+	    		@RequestBody String mid,
+	    		HttpServletResponse response) {
+	 	response.setContentType("application/json; charset=utf8");
+	 	
+        System.out.println("아이디 중복체크 컨트롤러입니다." +mid);
+        
+        int count = 0;
+        
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        
+        count = mdao.IdCheck(mid);
+        
+        map.put("cnt", count);
+        
+        System.out.println("다오 클래스 실행후 count 값입니다. " + count);
+        
+        return map;
 	    }
 	 
 //	 @RequestMapping(value="/test.do")
