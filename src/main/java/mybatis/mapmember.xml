@@ -13,7 +13,7 @@
 		</insert>
 		
 		<select id="IdCheck" parameterType="String" resultType="Integer">
-			select count(*) from member where mid = #{mid}
+			select count(*) as cnt from member where mid = #{mid}
 		</select>
 	</mapper>
 	

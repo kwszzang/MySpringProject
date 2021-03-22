@@ -13,6 +13,8 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+
+	
 	<repositories> 
 		<!-- 오라클 관련 항목들 -->
 		<repository>
@@ -97,32 +99,17 @@
 		</dependency>
 		
 		<!-- Ajax 관련 -->
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.8.6</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.9</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.9</version>
+		<dependency> 
+		    <groupId>org.codehaus.jackson</groupId> 
+		    <artifactId>jackson-mapper-asl</artifactId> 
+		    <version>1.9.13</version> 
 		</dependency>
 		
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.8.8</version>
 		</dependency>
-		
 
 			
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->

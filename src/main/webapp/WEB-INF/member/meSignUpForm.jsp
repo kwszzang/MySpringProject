@@ -74,34 +74,40 @@
 				<div style="margin-left: 6%;">
 					<form:input path = "mid" onkeyup="isCheckFalse();" id = "mid" type = "text" name = "mid" placeholder="아이디" />
 					<input id = "idck_btn" type = "button" value = "중복 검사" style="width: 100;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;">
+					<br>
 					<form:errors path = "mid" cssClass = "err"/>
 					<div id = "idcheck"></div>	
 				</div>
 					<br>
 					
 				<form:input id = "psw" path = "password" type = "password" name = "password" placeholder="비밀번호"/>
-					<br>
+				<br>
 				<form:input path = "passwordcheck" type = "password" name = "passwordcheck" placeholder="비밀번호 확인"	/>
+				<br><br>
 				<form:errors path = "password" cssClass = "err"/>
 					<br><br>	
 					<hr style="width: 35%;">
 				
 				<p style="margin-left: -20.5%;">회원 정보</p>
 			<form:input path = "name" type = "text" name ="name" placeholder="이름"/>
+				<br>
 			<form:errors path = "name" cssClass = "err"/>
 				<br><br>
 				
 			<form:input path = "age" type = "text" name ="age" placeholder="생일(YYYY/MM/DD)"/>
+			<br>
 			<form:errors path = "age" cssClass = "err"/>
 				<br><br>
 				
 			<input type="text" value = "010" disabled="disabled" style="width: 90; padding-left: 1.5%;">
 			<form:input path = "phone" type = "text" placeholder="핸드폰 번호(-없이 숫자만)" name = "phone" style="width: 360;"/>
+			<br>
 			<form:errors path = "phone" cssClass = "err"/>
 				<br><br>
 			<div style="margin-left: 6.5%;">
 				<form:input path = "email" type = "text" placeholder="이메일" name = "email" id = "email"/>
 				<input type = "button" value = "이메일 인증" style="width: 120;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
+				<br>
 				<form:errors path = "email" cssClass = "err"/>	
 				<br><br>
 			</div>
@@ -109,13 +115,16 @@
 			<div style="margin-left: 7.5%;">
 				<form:input path = "postcode" type = "text" name = "postcode" placeholder="우편 번호" disabled="disabled" id = "postcode" />
 				<input type = "button" value = "우편 번호 검색" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px;"onclick="DaumPostcode()">
+				<br>
 				<form:errors path = "postcode" cssClass = "err"/>	
 				<br>
 			</div>
 			<form:input path = "address1" type="text" name = "address1" placeholder="도로명 주소" disabled="disabled" id = "address1"/>
+			<br>
 			<form:errors path = "address1" cssClass = "err"/>
 				<br>
 			<form:input path = "address2" type="text" name = "address2" placeholder="상세 주소" id = "address2"/>
+			<br>
 			<form:errors path = "address2" cssClass = "err"/>
 				<br><br><br>
 				<hr style="width: 35%;">
@@ -228,6 +237,10 @@ $(function() {
         
         var userid =  $("#mid").val(); 
         
+        
+        if(userid == ""){
+        	alert('아이디를 입력하세요.');
+        }else{
         $.ajax({
             async: true,
             type : 'POST',
@@ -260,20 +273,21 @@ $(function() {
                 alert("error : " + error);
             }
         });
+        }
     });
 });
 
-function checkForm(){ /* 회원 가입 버튼 클릭*/
-	var isCheck = $('#isCheck').val() ;
-	if(isCheck == 'false'){
-		alert('아이디 중복 체크를 해주세용.');	
-		return false ;	
-	}
-}
-function isCheckFalse() {
+// function checkForm(){ /* 회원 가입 버튼 클릭*/
+	//var isCheck = $('#isCheck').val() ;
+	//if(isCheck == 'false'){
+		//alert('아이디 중복 체크를 해주세용.');	
+		//return false ;	
+	//}
+//} 
+ //function isCheckFalse() {
 	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
-	 document.getElementById('isCheck').value =false;
-}
+	// document.getElementById('isCheck').value =false;
+//} 
 </script>
 </body>
 </html>

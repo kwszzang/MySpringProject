@@ -21,6 +21,7 @@ public class Member {
 	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String password;
 	private String passwordcheck;
+	@NotEmpty(message = "필수 입력 사항입니다.")
 	private String phone;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")
