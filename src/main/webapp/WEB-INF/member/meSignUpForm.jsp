@@ -48,16 +48,23 @@
 	</div>
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
-			<div style="margin-left: 94%;">
+			<div style="margin-left: 93%;">
+				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.me">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
+				</c:if>
+				
+				<c:if test="${whologin == 1}">
+					<span>${loginfo.name }님</span>
+					<a href = "<%=contextPath %>/logout.me" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+				</c:if>	
 			</div>
 		</div>
 	</div>
-	<div style="width: 100%;height: 130px; background-color: grey; text-align: center;margin-top: 1.5%;">
-		<div style="padding-top: 1%;">
-			<h1>회원 가입 </h1>
-		</div>
+	<div style="text-align: center; width: 100%;height: auto; ">
+		<a href = "<%=contextPath%>/main.co" style="text-decoration: none;">
+			<h1 style="font-size: 35px;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</h1>
+		</a>
 	</div>
 	<div style="text-align: center;font-size: 15;letter-spacing: -1px;line-height: 0.8; font-weight: 400;">
 		<p>하나의 ID로 모든 MySpringProject를 이용할 수 있습니다.</p>
@@ -269,7 +276,7 @@ $(function() {
                 }
             },
             error : function(error) {
-                
+                console.log(error);
                 alert("error : " + error);
             }
         });

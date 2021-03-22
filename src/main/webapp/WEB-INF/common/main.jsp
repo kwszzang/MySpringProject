@@ -24,12 +24,19 @@
 	</div>
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
-			<div style="margin-left: 94%;">
+			<div style="margin-left: 93%;">
+				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.me">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
+					<button id = "ajaxtest">ajax테스트</button>
+				</c:if>
+				
+				<c:if test="${whologin == 1}">
+					<span>${loginfo.name }님</span>
+					<a href = "<%=contextPath %>/logout.me" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+				</c:if>	
 			</div>
 		</div>
-		
 	</div>
 	<div style="text-align: center; width: 100%;height: auto; ">
 		<a href = "<%=contextPath%>/main.co" style="text-decoration: none;">
@@ -57,10 +64,15 @@
 	</div>
 	
 		<!-- 커뮤니티 메뉴  -->
-		<div id="commuity_menu" style="position: absolute;top: 38.5%;left: 34.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="commuity_menu" style="position: absolute;top: 38.9%;left: 34.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
-					<a href = "#">커뮤니티 메뉴</a><br>
+					<a href = "<%=contextPath%>/boardlist.bo?brd_type=1">국내 게시판</a><br>
+				</div>
+			</div>
+			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
+				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
+					<a href = "#">해외 게시판</a><br>
 				</div>
 			</div>
 		</div>
@@ -75,7 +87,7 @@
 		</div>
 		
 		<!-- 앨범 메뉴  -->
-		<div id="album_menu" style="position: absolute;top: 38.5%;left: 46.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="album_menu" style="position: absolute;top: 38.9%;left: 46.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">앨범 메뉴</a><br>
@@ -84,7 +96,7 @@
 		</div>
 		
 		<!-- 동영상 메뉴  -->
-		<div id="video_menu" style="position: absolute;top: 38.5%;left: 52.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="video_menu" style="position: absolute;top: 38.9%;left: 52.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">동영상 메뉴</a><br>
@@ -93,7 +105,7 @@
 		</div>
 		
 		<!-- 검색 메뉴  -->
-		<div id="search_menu" style="position: absolute;top: 38.5%;left: 58.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="search_menu" style="position: absolute;top: 38.9%;left: 58.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "#">검색 메뉴</a><br>
@@ -135,7 +147,6 @@
 var slide_state =0;
 
 function slidedown(value) {
-	console.log(value);
 	if(slide_state == 0){
         $('#'+value+'_menu').slideDown(300);
         slide_state = 1;
@@ -145,5 +156,21 @@ function slidedown(value) {
         slide_state = 0;
     }
 }
+
+
+$('#ajaxtest').click(function() {
+	$.ajax({
+		url : "test.bo",
+		success : function(data){
+			alert(data.msg);
+			console.log(data);
+			console.log('데이터 : '+data.msg);
+		},
+		error : function(error){
+			console.log('에러 : '+error);
+			alert(error);
+		}
+	}); 
+});
 </script>
 </html>

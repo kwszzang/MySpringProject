@@ -6,11 +6,13 @@
   <configuration>
   	<typeAliases>
 		<typeAlias alias = "MyMember" type="bean.Member"/>
+		<typeAlias alias = "MyBoard" type="bean.Board"/>
   	</typeAliases>
   	
   	
   	<mappers>
 		<mapper resource="mybatis/mapmember.xml"/>
+		<mapper resource="mybatis/mapboard.xml"/>
   	</mappers>
   	
   </configuration>

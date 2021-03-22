@@ -1,6 +1,8 @@
 package controller.member;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,14 +15,14 @@ import bean.Member;
 import dao.MemberDao;
 
 @Controller
-public class MemberLoginController {
+public class MemberLoginOutController {
 	@Autowired
 	@Qualifier("mdao")
 	private MemberDao mdao;
 
 	private ModelAndView mav = null;
 	
-	public MemberLoginController() {
+	public MemberLoginOutController() {
 		this.mav = new ModelAndView();
 	}
 	
@@ -33,7 +35,8 @@ public class MemberLoginController {
 	@PostMapping(value ="login.me")
 	public ModelAndView doPost(
 			@RequestParam(value = "id")String id,
-			@RequestParam(value = "password")String password) {
+			@RequestParam(value = "password")String password,
+			HttpSession session) {
 		System.out.println("로그인 컨트롤러 post");
 		System.out.println("아이디 : "+id);
 		System.out.println("비밀번호 : "+password);
@@ -49,9 +52,17 @@ public class MemberLoginController {
 			message = "로그인이 완료되었습니다.\n메인화면으로 이동합니다.";
 			
 			this.mav.addObject("message", message);
-			
+			session.setAttribute("loginfo", bean);
 			this.mav.setViewName("redirect:/main.co");
 		}
+		return this.mav;
+	}
+	
+	@GetMapping(value = "logout.me")
+	public ModelAndView logOut(HttpSession session) {
+		session.invalidate();
+		this.mav.setViewName("redirect:/main.co");
+		
 		return this.mav;
 	}
 }

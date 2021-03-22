@@ -37,21 +37,15 @@
 	<!-- 멀티파트 리졸버 -->
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-
 		<!-- 최대업로드 가능한 바이트크기 -->
-
 		<property name="maxUploadSize" value="52428800" />
-
-
 		<!-- defaultEncoding -->
-
 		<property name="defaultEncoding" value="utf-8" />
-
 	</bean>
 
 	<!-- 이메일 발송 bean 설정 -->
-    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
+    <!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" /> gmail을 사용
         <property name="port" value="587" />
         <property name="username" value="kwsic2089@gmail.com" />
         <property name="password" value="dddd" />
@@ -63,7 +57,7 @@
                 <prop key="mail.debug">true</prop>
             </props>
         </property>
-    </bean>
+    </bean> -->
     
 </beans>
 
