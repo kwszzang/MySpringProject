@@ -11,7 +11,8 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<!-- <annotation-driven /> -->
+	<annotation-driven />
+	<mvc:annotation-driven />
 	
 	<!-- controller라는 패키지에서 컨트롤러를 검색합니다. -->		
 	<context:component-scan base-package="controller.common" />
@@ -41,6 +42,7 @@
 	        <beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	    </mvc:message-converters>
 	</mvc:annotation-driven> 
+	
 	
 	
 </beans:beans>

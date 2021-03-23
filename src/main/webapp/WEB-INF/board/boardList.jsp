@@ -6,25 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
+<style type="text/css">
+	a{
+		cursor: pointer;
+		text-decoration: none;
+		color: #5E5E5E;
+		font-weight: 600;
+		font-size: 15px;
+	 }
+	 tr{
+	 	border: none;
+	 }
+</style>
+<%-- <script type="text/javascript">
 		function writeForm(){
 				location.href='<%=contextPath%>/insert.bo';
 		}
 		function search(){
 			if( $('#mode').val() == 'all' ){
 				alert('검색 목록을 선택해주세요') ;
-				//$('#mode').focus();
 			}else{
-				//alert('하하') ;
 			}
-			//alert( $('#mode').val() );
 		}
 		function searchAll(){
-			//$('#mode').val('-');
-			//$('#keyword').val('');
 			location.href='<%=contextPath%>/boardlist.bo';
 		}
-	</script>
+	</script> --%>
 </head>
 <body>
 	<div style="background-color: #5801FF; height: 120px; padding-top: 3%;">
@@ -53,52 +60,45 @@
 		</a>
 	</div>
 	
-	<div style="width: 60%;margin-left: 24%;height: 100%;">
-		<span>국내 게시판</span>
-		<hr>
-		<table border="1" style="width: 100%">
-		<tr>
-		<td colspan="10" align="center">
-						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/boardlist.bo" method="post">
-							<div class="form-group">
-								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">-- 선택하세요---------
-									<option value="mid" >작성자
-									<option value="brd_subject" >제목									
-									<option value="brd_ontent" >글 내용									
-								</select>
-							</div>
-							<div class="form-group">
-								<input type="text" class="form-control btn-xs" name="keyword"
-									id="keyword" placeholder="검색 키워드">
-							</div>
-							<button class="btn btn-default btn-warning" type="submit" onclick="search();">검색</button>
-							<button class="btn btn-default btn-warning" type="button" onclick="searchAll();">전체 검색</button>
-							<button class="btn btn-default btn-info" type="button"
-								onclick="writeForm();">글 쓰기</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<p class="form-control-static">${requestScope.pagingStatus}</p>
-						</form>
+	<div style="">
+		<div style="width: 48%;margin-left: 27.5%;margin-bottom: 3%;">
+			<span style="">국내 게시판</span>
+			<br><br>
+			<hr>
+		</div>
+		<div>
+			<table style="width: 49%;margin-left: 27%;margin-bottom: -20%;text-align: center;height: 80%;">
+	      <thead>
+	        <tr>
+	          <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
+	        </tr>
+	      </thead>
+		      <tbody>
+		       <c:forEach var = "brd" items="${lists }">
+				   <tr>
+					   <td style="width: 5%;">${brd.seq_brd }</td>
+					   <td style="width: 60%;"><a href = "<%=contextPath%>/detailview.bo?seq_brd=${brd.seq_brd}&brd_type=${brd.brd_type}">${brd.brd_subject }</a></td>
+				       <td style="width: 10%;">${brd.mid }</td>
+					   <td style="width: 10%;">${brd.brd_inputdate }</td>
+					   <td style="width: 5%;">${brd.brd_hitnum }</td>
+					<tr>
+				</c:forEach>
+				<tr>
+					<td colspan="5" style="text-align: right;padding-right: 2%;" >
+						<button style="width: 90px;height: 40px; cursor: pointer;" 
+						onclick="location.href = 'writeboard.bo?brd_tpye=1';">글쓰기</button>
 					</td>
-			<tr>
-				<td>번호</td>
-				<td>제목</td>
-				<td>글쓴이</td>
-				<td>날짜</td>
-			</tr>
-			<c:forEach var = "brd" items="${lists }">
-			<tr>
-				<td>${brd.seq_brd }</td>
-				<td>${brd.brd_subject }</td>
-				<td>${brd.mid }</td>
-				<td>${brd.brd_inputdate }</td>
-				<td>${bean.remark}</td>
-			</tr>
-			</c:forEach>
-		</table>
-	</div>
-	<div align="center">
-			<footer>${pagingHtml}</footer>			
-		</div>		
+				</tr>
+		      </tbody>
+	    	</table>
+		</div>
+	</div>	
+	
 </body>
+
+<script type="text/javascript">
+	function writeboard() {
+		href.location
+	}
+</script>
 </html>

@@ -28,7 +28,6 @@ public class MemberDao {
 	}
 
 	public int IdCheck(String mid) {
-		System.out.println("아이디 중복체크 다오 클래스입니다.");
 		return this.abcd.selectOne(namespace+"IdCheck",mid);
 	}
 

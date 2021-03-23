@@ -34,7 +34,6 @@
 				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
-					 <button id = "ajaxtest">ajax테스트</button>
 				</c:if>
 				
 				<c:if test="${whologin == 1}">

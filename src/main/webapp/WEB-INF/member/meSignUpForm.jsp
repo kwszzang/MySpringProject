@@ -75,7 +75,7 @@
 		
 		<form:form modelAttribute="member" method="post" action="${apppath}/signup.do" >
 
-			<input id = "isCheck" type="text" name="isCheck" value="false">
+			<input id = "isCheck" type="hidden" name="isCheck" value="false">
 			
 				<p style="margin-left: -20.5%;">계정 정보</p>
 				<div style="margin-left: 6%;">
@@ -111,7 +111,7 @@
 			<br>
 			<form:errors path = "phone" cssClass = "err"/>
 				<br><br>
-			<div style="margin-left: 6.5%;">
+			<div style="margin-left: 7.5%;">
 				<form:input path = "email" type = "text" placeholder="이메일" name = "email" id = "email"/>
 				<input type = "button" value = "이메일 인증" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
 				<br>
@@ -284,16 +284,15 @@ $(function() {
     });
 });
 
-function checkForm(){ /* 회원 가입 버튼 클릭*/
+function checkForm(){
 	var isCheck = $('#isCheck').val() ;
 	if(isCheck == 'false'){
-		alert('아이디 중복 체크를 해주세용.');	
+		alert('아이디 중복 체크를 해주세요.');	
 		$("#mid").focus();
 		return false ;	
 	}
 } 
  function isCheckFalse() {
-	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
 	 document.getElementById('isCheck').value =false;
 } 
 </script>

@@ -3,35 +3,28 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="NsBoard">
-		<select id="SelectListByType" parameterType="Integer" resultType="MyBoard">
-			select * from board where brd_type = #{brd_type}
+		<select id="SelectListByType" resultType="MyBoard" parameterType="Integer">
+			select seq_brd, brd_hitnum, brd_subject,brd_content, to_char(brd_inputdate,'YYYY/MM/DD') as brd_inputdate, mid 
+			from board where brd_type = #{brd_type}
 		</select>
 		
-		<select id="SelectTotalCount" resultType="int">
-			select count(*) as cnt from board	
-			<if test="mode == 'writer'">
-				where mid like #{keyword}
-			</if>
-			<if test="mode == 'subject'">
-				where brd_subject like #{keyword}
-			</if>
-			<if test="mode == 'content'">
-				where brd_content like #{keyword}
-			</if>	
+		<update id="UpdateHitnum" parameterType="Integer">
+			update board set brd_hitnum = brd_hitnum+1 where seq_brd = #{seq_brd}
+		</update>
+		
+		<!-- 여기 3중 조인해야됨 -->
+		<select id="SelectComments" resultType="MyBoard">
+			select m.mid as mid, m.name as name,c.comt_content as comt_content, c.comt_inputdate as comt_inputdate
+			from (board b inner join comments c on b.seq_brd = c.seq_brd)
+			inner join member m on b.mid = m.mid
+			 where b.seq_brd = #{seq_brd}
 		</select>
 		
-		<select id="SelectDataList" resultType="MyBoard">
-			select * from board where brd_type = 1
-			<if test="mode == 'writer'">
-				and mid like #{keyword}
-			</if>
-			<if test="mode == 'subject'">
-				and brd_subject like #{keyword}
-			</if>
-			<if test="mode == 'content'">
-				and brd_content like #{keyword}
-			</if>
-	</select>	
+		<select id="SelectBoardList" resultType="MyBoard" >
+			select m.mid as mid , m.name as name, b.brd_subject as brd_subject
+			,b.brd_content as brd_content,b.brd_inputdate as brd_inputdate,b.brd_hitnum as brd_hitnum
+			from board b inner join member m on b.mid = m.mid where b.seq_brd = #{seq_brd}
+		</select>
 	</mapper>
 	
 	

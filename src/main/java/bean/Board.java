@@ -9,6 +9,48 @@ public class Board {
 	private String brd_inputdate;
 	private int brd_hitnum;
 	
+	//join 용 member
+	private String name;
+	
+	
+	//join 용 comments
+	
+	private int seq_comt;
+	private String comt_content;
+	private String comt_inputdate;
+	
+	//join 용 member getter / setter
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	//join 용 comments getter / setter
+	
+	public int getSeq_comt() {
+		return seq_comt;
+	}
+	
+	
+	public void setSeq_comt(int seq_comt) {
+		this.seq_comt = seq_comt;
+	}
+	public String getComt_content() {
+		return comt_content;
+	}
+	public void setComt_content(String comt_content) {
+		this.comt_content = comt_content;
+	}
+	public String getComt_inputdate() {
+		return comt_inputdate;
+	}
+	public void setComt_inputdate(String comt_inputdate) {
+		this.comt_inputdate = comt_inputdate;
+	}
+	
+	// board용 getter/setter
 	
 	public int getSeq_brd() {
 		return seq_brd;

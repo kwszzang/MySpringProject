@@ -7,12 +7,14 @@
   	<typeAliases>
 		<typeAlias alias = "MyMember" type="bean.Member"/>
 		<typeAlias alias = "MyBoard" type="bean.Board"/>
+		<typeAlias alias = "MyComments" type="bean.Comments"/>
   	</typeAliases>
   	
   	
   	<mappers>
 		<mapper resource="mybatis/mapmember.xml"/>
 		<mapper resource="mybatis/mapboard.xml"/>
+		<mapper resource="mybatis/mapcomments.xml"/>
   	</mappers>
   	
   </configuration>

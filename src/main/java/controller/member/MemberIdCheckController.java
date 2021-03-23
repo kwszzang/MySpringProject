@@ -30,7 +30,7 @@ public class MemberIdCheckController {
 	    		@RequestBody String mid
 	    		) {
 	 	
-        System.out.println("아이디 중복체크 컨트롤러입니다." + mid);
+        System.out.println("아이디 확인 : " + mid);
         
         int count = 0;
         
@@ -40,23 +40,8 @@ public class MemberIdCheckController {
         
         map.put("cnt", count);
         
-        System.out.println("다오 클래스 실행후 count 값입니다. " + count);
         
         return map;
 	    }
 	 
-//	 @RequestMapping(value="/test.do")
-//	   public @ResponseBody ModelAndView doPost(
-//			   @RequestParam HashMap<String, Object> commandMap){
-//	      ModelAndView mav = new ModelAndView();
-//	      
-//	      int count = 0;
-//	      count = mdao.IdCheck(mid);
-//	      mav.addObject("cnt", count);
-//	      
-//	      
-//	      mav.setViewName("jsonView");
-//	      return mav;
-//	      
-//	   }
 }
