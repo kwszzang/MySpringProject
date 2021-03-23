@@ -30,13 +30,13 @@ public class MemberLoginOutController {
 		this.mav = new ModelAndView();
 	}
 	
-	@GetMapping(value = "login.me")
+	@GetMapping(value = "login.do")
 	public ModelAndView doGet() {
-		this.mav.setViewName("meLoginForm");
+		this.mav.setViewName("/member/meLoginForm");
 		
 		return this.mav;
 	}
-	@PostMapping(value ="login.me")
+	@PostMapping(value ="login.do")
 	public ModelAndView doPost(
 			@RequestParam(value = "id")String id,
 			@RequestParam(value = "password")String password,
@@ -69,7 +69,7 @@ public class MemberLoginOutController {
 		return this.mav;
 	}
 	
-	@GetMapping(value = "logout.me")
+	@GetMapping(value = "logout.do")
 	public ModelAndView logOut(HttpSession session) {
 		session.invalidate();
 		this.mav.setViewName("redirect:/main.co");

@@ -1,9 +1,7 @@
 package controller.member;
 
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import dao.MemberDao;
 
 @Controller
-@RequestMapping()
+@RequestMapping( produces = "application/json; charset=utf8")
 public class MemberIdCheckController {
 	
 	
@@ -27,14 +25,12 @@ public class MemberIdCheckController {
 	public MemberIdCheckController() {
 	}
 	
-	 @PostMapping(value ="idcheck.me",produces = "application/json; charset=utf8")
-	 @ResponseBody
-	 public HashMap<String, Object> doPost(
-	    		@RequestBody String mid,
-	    		HttpServletResponse response) {
-	 	response.setContentType("application/json; charset=utf8");
+	 @PostMapping(value ="idcheck.do")
+	 public @ResponseBody HashMap<String, Object> doPost(
+	    		@RequestBody String mid
+	    		) {
 	 	
-        System.out.println("아이디 중복체크 컨트롤러입니다." +mid);
+        System.out.println("아이디 중복체크 컨트롤러입니다." + mid);
         
         int count = 0;
         

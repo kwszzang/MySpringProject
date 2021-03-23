@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class Member {
 	@NotEmpty(message = "필수 입력 사항입니다.")
-	@Length(min = 6, max = 15,message = "아이디는 최소 6자리, 최대 15자리 입니다.")
+	@Length(min = 4, max = 15,message = "아이디는 최소 4자리, 최대 15자리 입니다.")
 	private String mid;
 	
 	@NotEmpty(message = "필수 입력 사항입니다.")

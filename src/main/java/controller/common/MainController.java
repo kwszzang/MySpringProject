@@ -15,7 +15,7 @@ public class MainController {
 	
 	@GetMapping(value = "main.co")
 	public ModelAndView doGet() {
-		this.mav.setViewName("/main");
+		this.mav.setViewName("/common/main");
 		
 		return this.mav;
 	}

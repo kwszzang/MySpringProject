@@ -32,14 +32,14 @@ public class MemberSignUpController {
 		this.mav= new ModelAndView();
 	}
 	
-	@GetMapping(value = "signup.me")
+	@GetMapping(value = "signup.do")
 	public ModelAndView doGet() {
 		
-		this.mav.setViewName("meSignUpForm");
+		this.mav.setViewName("/member/meSignUpForm");
 		
 		return this.mav;
 	}
-	@PostMapping(value = "signup.me")
+	@PostMapping(value = "signup.do")
 	public ModelAndView doPost(
 			@ModelAttribute("member") @Valid Member xxx,
 			BindingResult error) {

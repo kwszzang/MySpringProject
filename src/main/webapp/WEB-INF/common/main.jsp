@@ -23,7 +23,7 @@
 			<button onclick="test()">xxxxx</button>
 			<script type="text/javascript">
 				function test() {
-					location.href='login.me';
+					location.href='login.do';
 				}
 			</script>
 		</div>
@@ -32,14 +32,14 @@
 		<div style="float: right; width: 100%; height: auto;">
 			<div style="margin-left: 93%;">
 				<c:if test="${whologin == 0}">
-					<a style="text-decoration: none;" href = "<%=contextPath%>/login.me">login</a>
+					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
-					<button id = "ajaxtest">ajax테스트</button>
+					 <button id = "ajaxtest">ajax테스트</button>
 				</c:if>
 				
 				<c:if test="${whologin == 1}">
 					<span>${loginfo.name }님</span>
-					<a href = "<%=contextPath %>/logout.me" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
 				</c:if>	
 			</div>
 		</div>

@@ -98,7 +98,7 @@ public class BoardListController {
 	}
 	
 	
-	@RequestMapping("test.bo")
+	@RequestMapping(value = "test.bo", produces = "application/text; charset=UTF-8")
 	public @ResponseBody String test(){
 		String result = "ajax테스트";	
 		

@@ -50,13 +50,13 @@
 		<div style="float: right; width: 100%; height: auto;">
 			<div style="margin-left: 93%;">
 				<c:if test="${whologin == 0}">
-					<a style="text-decoration: none;" href = "<%=contextPath%>/login.me">login</a>
+					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
 				</c:if>
 				
 				<c:if test="${whologin == 1}">
 					<span>${loginfo.name }님</span>
-					<a href = "<%=contextPath %>/logout.me" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
 				</c:if>	
 			</div>
 		</div>
@@ -73,8 +73,8 @@
 	<div style="margin-top: 5%; text-align: center;">
 		<c:set var="apppath" value="<%=contextPath%>"/>
 		
-		<form:form modelAttribute="member" method="post" action="${apppath}/signup.me" >
-		 
+		<form:form modelAttribute="member" method="post" action="${apppath}/signup.do" >
+
 			<input id = "isCheck" type="text" name="isCheck" value="false">
 			
 				<p style="margin-left: -20.5%;">계정 정보</p>
@@ -113,7 +113,7 @@
 				<br><br>
 			<div style="margin-left: 6.5%;">
 				<form:input path = "email" type = "text" placeholder="이메일" name = "email" id = "email"/>
-				<input type = "button" value = "이메일 인증" style="width: 120;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
+				<input type = "button" value = "이메일 인증" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
 				<br>
 				<form:errors path = "email" cssClass = "err"/>	
 				<br><br>
@@ -206,7 +206,7 @@ $('#email_btn').click(function(){
 	console.log(reciveremail);
 	if(reciveremail != ""){
 		 if (str == true) {
-		    	location.href = '${pageContext.request.contextPath}/emailcheck.me?reciveremail=' + reciveremail;
+		    	location.href = '${pageContext.request.contextPath}/emailcheck.do?reciveremail=' + reciveremail;
 		    } else {
 		        return false;
 		    }
@@ -227,7 +227,7 @@ $(".sendMail").click(function() {// 메일 입력 유효성 검사
 		mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
 		$.ajax({
 			type : 'post',
-			url : '/CheckMail.me',
+			url : '/CheckMail.do',
 			data : {
 				mail:mail
 				},
@@ -241,7 +241,7 @@ $(".sendMail").click(function() {// 메일 입력 유효성 검사
 
 $(function() {
     $("#idck_btn").click(function() {
-        
+
         var userid =  $("#mid").val(); 
         
         
@@ -252,20 +252,20 @@ $(function() {
             async: true,
             type : 'POST',
             data : userid,
-            url : "idcheck.me",
+            url : "idcheck.do",
             dataType : "json",
-            contentType: "application/json;charset=UTF-8",
+            contentType: "application/json; charset=UTF-8",
             success : function(data) {
                 if (data.cnt > 0) {//아이디 중복 o 
                     
-                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요."+data.cnt);
+                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                     $("#mid").addClass("has-error")
                     $("#mid").removeClass("has-success")
                     $("#mid").focus();
                     
                 
                 } else {//아이디 중복 x
-                    alert("사용가능한 아이디입니다."+data.cnt);
+                    alert("사용가능한 아이디입니다.");
                     $("#mid").addClass("has-success")
                     $("#mid").removeClass("has-error")
                     $("#psw").focus();
@@ -284,17 +284,18 @@ $(function() {
     });
 });
 
-// function checkForm(){ /* 회원 가입 버튼 클릭*/
-	//var isCheck = $('#isCheck').val() ;
-	//if(isCheck == 'false'){
-		//alert('아이디 중복 체크를 해주세용.');	
-		//return false ;	
-	//}
-//} 
- //function isCheckFalse() {
+function checkForm(){ /* 회원 가입 버튼 클릭*/
+	var isCheck = $('#isCheck').val() ;
+	if(isCheck == 'false'){
+		alert('아이디 중복 체크를 해주세용.');	
+		$("#mid").focus();
+		return false ;	
+	}
+} 
+ function isCheckFalse() {
 	/* 키보드에서 손을 떼면 호출이 되는데, isCheck를 false로 변경해 줍니다. */
-	// document.getElementById('isCheck').value =false;
-//} 
+	 document.getElementById('isCheck').value =false;
+} 
 </script>
 </body>
 </html>
