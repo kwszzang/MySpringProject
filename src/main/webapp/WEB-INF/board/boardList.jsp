@@ -18,20 +18,6 @@
 	 	border: none;
 	 }
 </style>
-<%-- <script type="text/javascript">
-		function writeForm(){
-				location.href='<%=contextPath%>/insert.bo';
-		}
-		function search(){
-			if( $('#mode').val() == 'all' ){
-				alert('검색 목록을 선택해주세요') ;
-			}else{
-			}
-		}
-		function searchAll(){
-			location.href='<%=contextPath%>/boardlist.bo';
-		}
-	</script> --%>
 </head>
 <body>
 	<div style="background-color: #5801FF; height: 120px; padding-top: 3%;">

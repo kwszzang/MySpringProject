@@ -1,5 +1,6 @@
 package controller.board;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,6 @@ public class BoardDetailVIewController {
 			@RequestParam(value = "seq_brd")int seq_brd
 			) {
 		
-		System.out.println("정보 잘 넘어 옵니까 : "+ seq_brd);
 		
 		//조회수 올리기 
 		int cnt = -9999;
@@ -57,7 +57,8 @@ public class BoardDetailVIewController {
 		
 		this.mav.addObject("commentlists", lists);
 		
-		System.out.println("다오 클래스들 걸치냐?");
+		
+		
 		this.mav.setViewName("/board/boardDetail");
 		
 		return this.mav;

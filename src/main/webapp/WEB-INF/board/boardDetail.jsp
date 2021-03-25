@@ -6,27 +6,111 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	a{
+		cursor: pointer;
+		text-decoration: none;
+		color: #5E5E5E;
+		font-weight: 600;
+		font-size: 15px;
+	 }
+</style>
 </head>
-<body>
-		<h1>게시판 상세 페이지 입니다 </h1>
-		<p>댓글수 : ${cnt }</p>
+<body style="overflow: auto;">
+<div style="background-color: #5801FF; height: 120px; padding-top: 3%;">
+		<div style="text-align: center;font-family: Myriad;font-size: 35px;font-weight: 700;letter-spacing: 0.2px;line-height: 1.5;color: yellow;">
+			<span>이벤트 문구</span><br>
+		</div>
+	</div>
+	<div>
+		<div style="float: right; width: 100%; height: auto;">
+			<div style="margin-left: 93%;">
+				<c:if test="${whologin == 0}">
+					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
+					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
+				</c:if>
+				
+				<c:if test="${whologin == 1}">
+					<span>${loginfo.name }님</span>
+					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+				</c:if>	
+			</div>
+		</div>
+	</div>
+	<div style="text-align: center; width: 100%;height: auto; ">
+		<a href = "<%=contextPath%>/main.co" style="text-decoration: none;">
+			<h1 style="font-size: 35px;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</h1>
+		</a>
+	</div>
+		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
+			<c:forEach var = "brd" items = "${boardlist }">
+				<div style="line-height: 0.5;">
+					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
+					<div>
+						<div style="float: left;">
+							${brd.name }(${brd.mid }) l ${brd.brd_inputdate }
+						</div>
+						<div style="float: left; margin-left: 60%;">
+							조회수 : ${brd.brd_hitnum }&nbsp;&nbsp;
+						</div>
+						<div style="float: left; margin-left: 1%;">
+						 	댓글수 : ${cnt } 
+						 </div>
+					</div>
+					<br>
+					<hr>
+				</div>
+				<div style = "text-align: left; height:auto; overflow: visible;">
+					<div style = "height: 60%; background-color: red;">
+					<br>
+						파일(이미지) 자리
+					</div>
+					<div style = "background-color: yellow;">
+					<br>
+						${brd.brd_content }
+					</div>
+					<div style = "height: 10%;background-color: green;">
+					<br>
+						첨부파일자리
+					</div>
+					<div style = "height: 27%;margin-left: 9%;">
+						<p>댓글 입력</p>
+						<c:forEach var = "loginfo" items = "${loginList }">
+							<input id = "loginId" type = "text" value = "${loginfo.mid }">
+							<input id = "seq_Brd" type = "text" value = "${brd.seq_brd }">
+						</c:forEach>
+							<textarea rows="12" cols="130"></textarea>
+							<div>
+								<button onclick="Write()" style="margin-left: 81.5%;width: 9%;height: 16%;background-color: #cecedc;
+								border-radius: 9px;font-size: medium;margin-top: 3.5px;font: caption;font-weight: 600;">
+								 댓글 작성
+								</button>
+							</div>
+					</div>
+					<div style = "background-color: grey; height: 30%;">
+					<br>
+						<c:forEach var = "comt" items="${commentlists }">
+							<P>댓글 작성자 아이디 : ${comt.mid }</P>
+							<P>댓글 작성자 이름 : ${comt.name }</P>
+							<P>댓글 내용 : ${comt.comt_content }</P>
+							<P>댓글 작성일자 : ${comt.comt_inputdate }</P>
+						</c:forEach>
+					</div>
+				</div>
+				
+				<div>
+				</div>
+			</c:forEach>
+		</div>
 		
-		<h1>작성글 보기</h1>
-		<c:forEach var = "brd" items = "${boardlist }">
-			<P>글 번호 : ${brd.seq_brd }</P>
-			<P>글 제목 : ${brd.brd_subject }</P>
-			<P>글 내용 : ${brd.brd_content }</P>
-			<P>글 조회수 : ${brd.brd_hitnum }</P>
-			<P>글 작성일자 : ${brd.brd_inputdate }</P>
-			<p>글 작성자 : ${brd.mid }</p>
-			<p>글 작성자 이름 : ${brd.name }</p>
-		</c:forEach>
-		
-		<c:forEach var = "comt" items="${commentlists }">
-			<P>댓글 작성자 아이디 : ${comt.mid }</P>
-			<P>댓글 작성자 이름 : ${comt.name }</P>
-			<P>댓글 내용 : ${comt.comt_content }</P>
-			<P>댓글 작성일자 : ${comt.comt_inputdate }</P>
-		</c:forEach>
 </body>
+<script type="text/javascript">
+	function Write() {
+		var mid = $('#loginId').val();
+		var seq_nrd = $('#seq_Brd').val();
+		
+		
+		
+	}
+</script>
 </html>
