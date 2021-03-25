@@ -96,21 +96,6 @@
 		<url-pattern>*.bo</url-pattern>
 	</servlet-mapping>	
 	
-	<!--  comments section -->
-	 <servlet>
-		<servlet-name>comments</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-		</init-param>		
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>comments</servlet-name>
-		<url-pattern>*.comm</url-pattern>
-	</servlet-mapping>	
-	
 	
 
 </web-app>

@@ -73,16 +73,14 @@
 					<br>
 						첨부파일자리
 					</div>
-					<div style = "height: 27%;margin-left: 9%;">
-						<p>댓글 입력</p>
-						<c:forEach var = "loginfo" items = "${loginList }">
-							<input id = "loginId" type = "text" value = "${loginfo.mid }">
-							<input id = "seq_Brd" type = "text" value = "${brd.seq_brd }">
-						</c:forEach>
-							<textarea rows="12" cols="130"></textarea>
+					<div style = "height: 30%;margin-left: 9%;">
+						댓글 입력<br>
+						<input id = "seq_Brd" type = "text" value = "${brd.seq_brd }">
+						<input id = "loginId" type = "text" value= "${loginfo.mid }">
+						<textarea id="comments" rows="12" cols="130"></textarea>
 							<div>
 								<button onclick="Write()" style="margin-left: 81.5%;width: 9%;height: 16%;background-color: #cecedc;
-								border-radius: 9px;font-size: medium;margin-top: 3.5px;font: caption;font-weight: 600;">
+								border-radius: 9px;font-size: medium;margin-top: 3.5px;font: caption;font-weight: 600; cursor: pointer;">
 								 댓글 작성
 								</button>
 							</div>
@@ -106,10 +104,36 @@
 </body>
 <script type="text/javascript">
 	function Write() {
+		
 		var mid = $('#loginId').val();
-		var seq_nrd = $('#seq_Brd').val();
+		var fakeseq_brd = $('#seq_Brd').val();
+		var comments = $('#comments').val();
 		
+		console.log(mid);
+		console.log('글 번호 타입 확인 '+typeof(fakeseq_brd));
+		console.log(comments);
 		
+		if(mid == ""){
+			alert('로그인부터 해주세요.');
+		}else{
+	 		 $.ajax({
+		            async: true,
+		            type : 'POST',
+		            data : {"mid" : mid,
+		            	    "fakeseq_brd" : fakeseq_brd},
+		            url : "writecomments.bo",
+		            dataType : "json",
+		            contentType: "application/json; charset=UTF-8",
+		            success : function(data) {
+						alert('성공');
+		            },
+		            error : function(error) {
+		                console.log(error);
+		                alert("error : " + error);
+		            }
+		        }); 
+			
+		} 
 		
 	}
 </script>
