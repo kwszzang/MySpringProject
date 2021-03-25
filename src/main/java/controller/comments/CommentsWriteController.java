@@ -34,15 +34,26 @@ public class CommentsWriteController {
 		
 		String mid = (String) map.get("mid");
 		String fakeseq_brd = (String) map.get("fakeseq_brd");
+		String comt_content = (String) map.get("comments");
 		
 		int seq_brd = Integer.parseInt(fakeseq_brd);
 		
 		System.out.println("넘어온 아이디 : "+mid);
 		System.out.println("넘어온 글 번호 : "+fakeseq_brd);
 		System.out.println("넘어온 글 번호 int로 전환 : "+seq_brd);
-		List<Comments> lists = new ArrayList<Comments>();
+		System.out.println("넘어온 댓글 내용 : "+ comt_content);
+		
+		int cnt = - 9999;
+		//댓글 테이블에 넣기
+		cnt = this.cdao.WriteComments(mid,seq_brd,comt_content);
+		//방금 넣은 댓글 시퀀스 값 가져오기 
+		int seq_comt = this.cdao.SelectComments();
+		//방금 넣은 댓글 전체 조회하기
+		List<Comments> lists =this.cdao.SelectRealComments(seq_comt);
+		
 		
 		return lists;
 	}
+
 
 }

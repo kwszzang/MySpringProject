@@ -6,6 +6,19 @@
 		<select id="CommentsCnt" parameterType="Integer" resultType="Integer">
 			select count(*) as cnt from comments where seq_brd = #{seq_brd}
 		</select>
+		
+		<insert id="WriteComments" parameterType="HashMap">
+			insert into comments values (seq_comt.nextval, #{seq_brd}, #{mid}, #{comt_content}, sysdate)
+		</insert>
+		
+		<select id = "SelectComments" resultType="Integer">
+			select seq_comt.currval as seq_comt from dual
+		</select>
+		
+		<select id = "SelectRealComments" resultType="MyComments" parameterType="Integer">
+			select * from comments where seq_comt = #{seq_comt}
+		</select>
+		
 
 	</mapper>
 	

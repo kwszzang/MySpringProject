@@ -89,11 +89,19 @@
 					<br>
 							<div id = "commenttest"></div>
 						<c:forEach var = "comt" items="${commentlists }">
-							<div id = "commenttest">
-							<P>댓글 작성자 아이디 : ${comt.mid }</P>
-							<P>댓글 작성자 이름 : ${comt.name }</P>
-							<P>댓글 내용 : ${comt.comt_content }</P>
-							<P>댓글 작성일자 : ${comt.comt_inputdate }</P>
+							<div>
+								<div>
+									${comt.mid }
+								</div>
+								
+								<div>
+									${comt.comt_content }
+								</div>
+								
+								<div>
+									<!--  댓글 삭제 아이콘 추가하기-->
+									${comt.comt_inputdate }
+								</div>
 							</div>
 						</c:forEach>
 					</div>
@@ -123,7 +131,8 @@
 		            async: true,
 		            type : 'POST',
 		            data :JSON.stringify  ({ "mid" : mid,
-		            		 "fakeseq_brd" : fakeseq_brd
+		            		 "fakeseq_brd" : fakeseq_brd,
+		            		 "comments" : comments
 		            	    }),
 		            url : "writecomments.bo",
 		            dataType : "json",
@@ -132,8 +141,8 @@
 						alert('성공');
 						var result = '';
 						
-						result+= '<h1>안녕하세요 이게 어디서 작성되는지 궁금합니다</h1>'
-							$('#commenttest').html(result);
+						result += '<h1>안녕하세요 이게 어디서 작성되는지 궁금합니다</h1>'
+						$('#commenttest').html(result);
 		            },
 		            error : function(error) {
 		                console.log(error);

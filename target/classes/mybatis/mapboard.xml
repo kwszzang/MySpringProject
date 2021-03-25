@@ -17,7 +17,7 @@
 			select m.mid as mid, m.name as name,c.comt_content as comt_content, c.comt_inputdate as comt_inputdate
 			from (board b inner join comments c on b.seq_brd = c.seq_brd)
 			inner join member m on b.mid = m.mid
-			 where b.seq_brd = #{seq_brd}
+			 where b.seq_brd = #{seq_brd} order by c.comt_inputdate desc
 		</select>
 		
 		<select id="SelectBoardList" resultType="MyBoard" >
