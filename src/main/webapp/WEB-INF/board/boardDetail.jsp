@@ -45,7 +45,7 @@
 		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
 			<c:forEach var = "brd" items = "${boardlist }">
 				<div style="line-height: 0.5;">
-					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
+					<p style="font-weight: bold;color: #0b1b58;">(${brd.seq_brd})${brd.brd_subject }</p>	
 					<div>
 						<div style="float: left;">
 							${brd.name }(${brd.mid }) l ${brd.brd_inputdate }
@@ -87,11 +87,14 @@
 					</div>
 					<div style = "background-color: grey; height: 30%;">
 					<br>
+							<div id = "commenttest"></div>
 						<c:forEach var = "comt" items="${commentlists }">
+							<div id = "commenttest">
 							<P>댓글 작성자 아이디 : ${comt.mid }</P>
 							<P>댓글 작성자 이름 : ${comt.name }</P>
 							<P>댓글 내용 : ${comt.comt_content }</P>
 							<P>댓글 작성일자 : ${comt.comt_inputdate }</P>
+							</div>
 						</c:forEach>
 					</div>
 				</div>
@@ -119,13 +122,18 @@
 	 		 $.ajax({
 		            async: true,
 		            type : 'POST',
-		            data : {"mid" : mid,
-		            	    "fakeseq_brd" : fakeseq_brd},
+		            data :JSON.stringify  ({ "mid" : mid,
+		            		 "fakeseq_brd" : fakeseq_brd
+		            	    }),
 		            url : "writecomments.bo",
 		            dataType : "json",
 		            contentType: "application/json; charset=UTF-8",
 		            success : function(data) {
 						alert('성공');
+						var result = '';
+						
+						result+= '<h1>안녕하세요 이게 어디서 작성되는지 궁금합니다</h1>'
+							$('#commenttest').html(result);
 		            },
 		            error : function(error) {
 		                console.log(error);

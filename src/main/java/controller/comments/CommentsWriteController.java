@@ -2,6 +2,7 @@ package controller.comments;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,14 +29,19 @@ public class CommentsWriteController {
 	
 	@PostMapping(value = "writecomments.bo")
 	public @ResponseBody List<Comments>  doPost(
-			@RequestBody String mid,
-			@RequestBody String fakeseq_brd){
+			@RequestBody Map<String, Object> map
+			)throws Exception{
+		
+		String mid = (String) map.get("mid");
+		String fakeseq_brd = (String) map.get("fakeseq_brd");
+		
 		int seq_brd = Integer.parseInt(fakeseq_brd);
 		
-		System.out.println("건너온 아이디 : "+mid);
-		System.out.println("건너온 글 번호 : "+seq_brd);
-		
+		System.out.println("넘어온 아이디 : "+mid);
+		System.out.println("넘어온 글 번호 : "+fakeseq_brd);
+		System.out.println("넘어온 글 번호 int로 전환 : "+seq_brd);
 		List<Comments> lists = new ArrayList<Comments>();
+		
 		return lists;
 	}
 
