@@ -45,7 +45,7 @@
 		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
 			<c:forEach var = "brd" items = "${boardlist }">
 				<div style="line-height: 0.5;">
-					<p style="font-weight: bold;color: #0b1b58;">(${brd.seq_brd})${brd.brd_subject }</p>	
+					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
 					<div>
 						<div style="float: left;">
 							${brd.name }(${brd.mid }) l ${brd.brd_inputdate }
@@ -54,7 +54,7 @@
 							조회수 : ${brd.brd_hitnum }&nbsp;&nbsp;
 						</div>
 						<div style="float: left; margin-left: 1%;">
-						 	댓글수 : ${cnt } 
+						 	댓글수 : ${cnt }
 						 </div>
 					</div>
 					<br>
@@ -85,29 +85,25 @@
 								</button>
 							</div>
 					</div>
-					<div style = "background-color: grey; height: 30%;">
+					<div style = "height: 30%;">
 					<br>
-							<div id = "commenttest"></div>
 						<c:forEach var = "comt" items="${commentlists }">
-							<div>
-								<div>
-									${comt.mid }
-								</div>
-								
-								<div>
-									${comt.comt_content }
-								</div>
-								
-								<div>
-									<!--  댓글 삭제 아이콘 추가하기-->
-									${comt.comt_inputdate }
-								</div>
+							<div style="width: 100%; height: auto; overflow: visible;">
+								<!-- 새로운 댓글 쓰기 전용 div -->
+								<table style="table-layout:fixed; white-space: normal; ">
+									<div id = "commenttest">
+										
+									</div>
+									<tr>
+										<td style="border-left: 40px solid white;">${comt.mid }</td>
+										<td style="border-left: 100px solid white;width: 35%;">${comt.comt_content }</td>
+										<td style="border-left: 480px solid white; font-size: 13px;width: 65%;">${comt.comt_inputdate }</td>
+									</tr>
+								</table>
 							</div>
+							<br>
 						</c:forEach>
 					</div>
-				</div>
-				
-				<div>
 				</div>
 			</c:forEach>
 		</div>
@@ -120,10 +116,11 @@
 		var fakeseq_brd = $('#seq_Brd').val();
 		var comments = $('#comments').val();
 		
+		
 		console.log(mid);
 		console.log('글 번호 타입 확인 '+typeof(fakeseq_brd));
+		console.log('댓글수 타입 확인 '+typeof(comments));
 		console.log(comments);
-		
 		if(mid == ""){
 			alert('로그인부터 해주세요.');
 		}else{
@@ -139,10 +136,19 @@
 		            contentType: "application/json; charset=UTF-8",
 		            success : function(data) {
 						alert('성공');
-						var result = '';
 						
-						result += '<h1>안녕하세요 이게 어디서 작성되는지 궁금합니다</h1>'
+						
+						var result = '';
+						for(var i in data) {
+						result += '<tr>';
+						result += '<td style="border-left: 40px solid white;">'+data[i].mid+'</td>';
+						result += '<td style="border-left: 100px solid white;width: 35%;">'+data[i].comt_content+'</td>';
+						result += '<td style="border-left: 480px solid white; font-size: 13px;width: 65%;">'+data[i].comt_inputdate+'</td>';
+						result += '</tr>';
+						}
+						
 						$('#commenttest').html(result);
+						
 		            },
 		            error : function(error) {
 		                console.log(error);

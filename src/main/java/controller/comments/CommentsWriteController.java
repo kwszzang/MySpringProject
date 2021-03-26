@@ -51,7 +51,7 @@ public class CommentsWriteController {
 		//방금 넣은 댓글 전체 조회하기
 		List<Comments> lists =this.cdao.SelectRealComments(seq_comt);
 		
-		
+
 		return lists;
 	}
 

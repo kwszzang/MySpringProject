@@ -10,6 +10,12 @@ public class Comments {
 	
 	
 	
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
 	public int getSeq_comt() {
 		return seq_comt;
 	}
