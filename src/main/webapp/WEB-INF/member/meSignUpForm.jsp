@@ -115,7 +115,8 @@
 				<form:input path = "email" type = "text" placeholder="이메일(네이버만 가능)" name = "email" id = "email"/>
 				<input type = "button" value = "이메일 인증" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
 				<br>
-				<input type = "text" placeholder="인증번호 입력란" style="margin-left:-8%;">
+				<input class = "compare" type = "text" placeholder="인증번호 입력란" style="margin-left:-8.5%; width: 300px;">
+				<input class = "compare-text" type = "text" style="width: 150px;">
 				<br>
 				<form:errors path = "email" cssClass = "err"/>	
 				<br><br>
@@ -214,10 +215,23 @@ $("#email_btn").click(function() {// 메일 입력 유효성 검사
 			dataType :'json',
 			contentType: "application/json; charset=UTF-8",
 			success : function(data) {
-				if(data.cnt == 1){
 					alert("인증번호가 전송되었습니다.") 
-					isCertification=true; //추후 인증 여부를 알기위한 값
+					console.log(data.key);
+					
+					var key = data.key;
+					var isCertification=true; //추후 인증 여부를 알기위한 값
+					
+			$("#compare").on("propertychange change keyup paste input", function() {
+				console.log("여기는 compare 하는 곳 입니다 : "+key);
+				consloe.log("input에 넣는 값 확인 : "+$("#compare").val());
+				if ($("#compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
+					$("#compare-text").text("인증 성공!").css("color", "black");
+					isCertification = true;  //인증 성공여부 check
+				} else {
+					$("#compare-text").text("불일치!").css("color", "red");
+					isCertification = false; //인증 실패
 				}
+});
 			},
 			error : function(error) {
 	                console.log(error);
@@ -284,6 +298,9 @@ function checkForm(){
  function isCheckFalse() {
 	 document.getElementById('isCheck').value =false;
 } 
+ 
+
+ 
 </script>
 </body>
 </html>

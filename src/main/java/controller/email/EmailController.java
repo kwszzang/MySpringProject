@@ -1,18 +1,12 @@
 package controller.email;
 
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Random;
 
-import javax.mail.internet.MimeMessage;
 
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,12 +22,6 @@ import bean.Email;
 public class EmailController {
 	@Autowired private JavaMailSenderImpl mailSender;
 
-	final String sendername = "김원식";
-	final String senderemail = "kwsic2089@gmail.com";
-	final String subject = "MySpringProject에서 보내드리는 인증 번호입니다.";
-	
-	
-	
 	
 	@ModelAttribute("email")
 	public Email email() {
@@ -42,7 +30,7 @@ public class EmailController {
 	
 	public EmailController() {
 	}
-		@PostMapping(value = "emailcheck.do") // AJAX와 URL을 매핑시켜줌 
+		@PostMapping(value = "emailcheck.do") 
 		public @ResponseBody HashMap<String, Object>  SendMail(@RequestBody String mail) {
 			
 			Random random=new Random();  //난수 생성을 위한 랜덤 클래스
@@ -56,14 +44,18 @@ public class EmailController {
 				key+=(char)index;
 			}
 			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
+			
 			key+=numIndex;
+			
 			message.setSubject("인증번호 입력을 위한 메일 전송");
+			
 			message.setText("인증 번호 : "+key);
 			mailSender.send(message);
 			
-			int cnt = 1;
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("cnt", cnt);
+			
+			System.out.println("발송 될 인증 번호 : "+key);
+			map.put("key", key);
 			
 			return map;
 		}
