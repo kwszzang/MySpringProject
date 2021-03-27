@@ -112,8 +112,10 @@
 			<form:errors path = "phone" cssClass = "err"/>
 				<br><br>
 			<div style="margin-left: 7.5%;">
-				<form:input path = "email" type = "text" placeholder="이메일" name = "email" id = "email"/>
+				<form:input path = "email" type = "text" placeholder="이메일(네이버만 가능)" name = "email" id = "email"/>
 				<input type = "button" value = "이메일 인증" style="width: 137;cursor: pointer; background-color:#9c9c9c; color: white;padding-bottom: 8px; " id = "email_btn">
+				<br>
+				<input type = "text" placeholder="인증번호 입력란" style="margin-left:-8%;">
 				<br>
 				<form:errors path = "email" cssClass = "err"/>	
 				<br><br>
@@ -197,45 +199,32 @@ function DaumPostcode() {
 }
 
 
-/* $("#email").keyup( function(){
-	var reciveremail = $('#email').val();
-}); */
-$('#email_btn').click(function(){
-	var str = confirm('입력하신 이메일로 인증 번호를 전송하겠습니까?');
-	var reciveremail = $('#email').val();
-	console.log(reciveremail);
-	if(reciveremail != ""){
-		 if (str == true) {
-		    	location.href = '${pageContext.request.contextPath}/emailcheck.do?reciveremail=' + reciveremail;
-		    } else {
-		        return false;
-		    }
-	}else{
-		alert('이메일을 입력하세요.');
-	}
-   
-	
-});
 
-
-$(".sendMail").click(function() {// 메일 입력 유효성 검사
+$("#email_btn").click(function() {// 메일 입력 유효성 검사
 	var mail = $("#email").val(); //사용자의 이메일 입력값. 
 	
 	if (mail == "") {
 		alert("메일 주소가 입력되지 않았습니다.");
 	} else {
-		mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
 		$.ajax({
+			async: true,
 			type : 'post',
-			url : '/CheckMail.do',
-			data : {
-				mail:mail
-				},
+			url : 'emailcheck.do',
+			data : mail,
 			dataType :'json',
-
+			contentType: "application/json; charset=UTF-8",
+			success : function(data) {
+				if(data.cnt == 1){
+					alert("인증번호가 전송되었습니다.") 
+					isCertification=true; //추후 인증 여부를 알기위한 값
+				}
+			},
+			error : function(error) {
+	                console.log(error);
+	                alert("error : " + error);
+	            }
 		});
-		alert("인증번호가 전송되었습니다.") 
-		isCertification=true; //추후 인증 여부를 알기위한 값
+		
 	}
 });
 

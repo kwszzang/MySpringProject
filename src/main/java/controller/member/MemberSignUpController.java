@@ -38,7 +38,6 @@ public class MemberSignUpController {
 	
 	@GetMapping(value = "signup.do")
 	public ModelAndView doGet() {
-		
 		this.mav.setViewName("/member/meSignUpForm");
 		
 		return this.mav;
