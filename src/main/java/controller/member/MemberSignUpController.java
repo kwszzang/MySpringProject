@@ -1,7 +1,10 @@
 package controller.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,26 +48,35 @@ public class MemberSignUpController {
 	@PostMapping(value = "signup.do")
 	public ModelAndView doPost(
 			@ModelAttribute("member") @Valid Member xxx,
-			BindingResult error
-			) {
-		  System.out.println("name:"+xxx.getName());
-          System.out.println("pass:"+xxx.getPassword());
-          
-         System.out.println("error:"+error.hasErrors());
+			BindingResult error,
+			HttpServletResponse response
+			) throws IOException {
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		if(error.hasErrors()) {
 			System.out.println("유효성 검사 문제");
 			
+			out.println("<script>alert('유효성 검사 문제');</script>");
+			out.flush();
+			out.close();
+			
+			
 			this.mav.setViewName("/member/meSignUpForm");
 		}else {
 			System.out.println("유효성 검사 통과");
-			//인설트dao 할거 
-			int cnt = - 9999;
-			//cnt = this.mdao.SiginInData(xxx);
-			//로그인 화면으로 이동
-			//this.mav.setViewName("redirect:/login.do");
 			
-			this.mav.setViewName("/member/meSignUpForm");
+			out.println("<script>alert('유효성 검사 통과');</script>");
+			out.flush();
+			out.close();
+			
+			
+			int cnt = - 9999;
+			cnt = this.mdao.SiginInData(xxx);
+			//로그인 화면으로 이동
+			this.mav.setViewName("redirect:/login.do");
+			
 		}
 		return this.mav;
 		

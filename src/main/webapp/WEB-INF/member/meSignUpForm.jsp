@@ -139,7 +139,7 @@
 				<br><br><br>
 				<hr style="width: 35%;">
 				<br>
-			<input type = "submit" value = "가입하기" onclick="return checkForm();"
+			<input id = "submit_btn" type = "submit" value = "가입하기" onclick="return checkForm();"
 			 style="width: 150px;text-align: center;padding-right: 11px;padding-bottom: 7px;background-color:#9c9c9c; color: white;">
 				<br>
 			<div style="margin-top: 8%;">
@@ -199,7 +199,7 @@ function DaumPostcode() {
     }).open();
 }
 
-
+var isCertification=true;
 
 $("#email_btn").click(function() {// 메일 입력 유효성 검사
 	var mail = $("#email").val(); //사용자의 이메일 입력값. 
@@ -219,7 +219,7 @@ $("#email_btn").click(function() {// 메일 입력 유효성 검사
 					console.log(data.key);
 					
 					var key = data.key;
-					var isCertification=true; //추후 인증 여부를 알기위한 값
+					 //추후 인증 여부를 알기위한 값
 					
 					$(".compare").on("propertychange change keyup paste input", function() {
 						if ($(".compare").val() == key) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
@@ -232,12 +232,26 @@ $("#email_btn").click(function() {// 메일 입력 유효성 검사
 							isCertification = false; //인증 실패
 						}
 					});
+					
+					
 			},
 			error : function(error) {
 	                console.log(error);
 	                alert("error : " + error);
 	            }
 		});
+		
+	}
+});
+
+$("#submit_btn").click(function(){
+	if(isCertification==false){ //인증이 완료되지 않았다면
+		if(isCertification==false){
+			alert("메일 인증이 완료되지 않았습니다.");
+			return false;
+		}else{
+			true;
+		}
 		
 	}
 });

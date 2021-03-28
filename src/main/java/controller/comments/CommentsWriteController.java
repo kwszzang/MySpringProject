@@ -48,6 +48,9 @@ public class CommentsWriteController {
 		cnt = this.cdao.WriteComments(mid,seq_brd,comt_content);
 		//방금 넣은 댓글 시퀀스 값 가져오기 
 		int seq_comt = this.cdao.SelectComments();
+		System.out.println("확인하기 댓글테이블에 넣은 시퀀스 "+seq_comt);
+		
+		
 		//방금 넣은 댓글 전체 조회하기
 		List<Comments> lists =this.cdao.SelectRealComments(seq_comt);
 		
