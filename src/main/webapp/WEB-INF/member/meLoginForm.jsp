@@ -66,7 +66,7 @@
 					<h5 >ID는 MySpringProject에 로그인할 때 사용하는 ID입니다.</h5><br><br>
 					<input id = "login" type = "submit" value = "로그인" style="cursor: pointer; width: 250px;">
 					<div style="margin-top: -12%;margin-left: 69%;">
-					<a href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=afcac90f7173cac9376acb7ea7547854&redirect_uri=http://localhost:8989/project/kakaologin.do&response_type=code">
+					<a href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=afcac90f7173cac9376acb7ea7547854&redirect_uri=http://localhost:8989/project/kakaologin.do">
 						<img  src="<%=contextPath %>/resources/img/kakaologin.png" style="cursor: pointer;" >
 					</a>
 					</div>

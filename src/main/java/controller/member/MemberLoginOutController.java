@@ -3,6 +3,7 @@ package controller.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -74,11 +75,23 @@ public class MemberLoginOutController {
 	}
 	
 	@GetMapping(value= "kakaologin.do")
-	public ModelAndView login(@RequestParam("code") String code) {
+	public ModelAndView login(
+			@RequestParam("code") String code,
+			HttpSession session) {
+		
+		System.out.println("넘어오는 코드 확인 : "+code);
+		
 		String access_Token = kakao.getAccessToken(code);
         System.out.println("controller access_token : " + access_Token);
         
+        HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+        System.out.println("login Controller : " + userInfo);
         
+        //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+        if (userInfo.get("email") != null) {
+            session.setAttribute("userId", userInfo.get("email"));
+            session.setAttribute("access_Token", access_Token);
+        }
         this.mav.setViewName("redirect:/login.do");
         
         return this.mav;
