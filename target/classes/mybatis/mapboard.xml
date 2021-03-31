@@ -30,6 +30,7 @@
 			insert into board values(seq_brd.nextval, #{mid}, #{brd_type}, #{brd_subject},
 			#{brd_content}, sysdate, 0)
 		</insert>
+		
 	</mapper>
 	
 	
