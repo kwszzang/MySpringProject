@@ -20,6 +20,10 @@ import dao.MemberDao;
 
 @Controller
 public class MemberLoginOutController {
+	
+	@Autowired
+	private KakaoLoginApi kakao;
+	
 	@Autowired
 	@Qualifier("mdao")
 	private MemberDao mdao;
@@ -68,6 +72,20 @@ public class MemberLoginOutController {
 		}
 		return this.mav;
 	}
+	
+	@GetMapping(value= "kakaologin.do")
+	public ModelAndView login(@RequestParam("code") String code) {
+		String access_Token = kakao.getAccessToken(code);
+        System.out.println("controller access_token : " + access_Token);
+        
+        
+        this.mav.setViewName("redirect:/login.do");
+        
+        return this.mav;
+	}
+
+	
+	
 	
 	@GetMapping(value = "logout.do")
 	public ModelAndView logOut(HttpSession session) {

@@ -64,7 +64,14 @@
 					</p>
 					
 					<h5 >ID는 MySpringProject에 로그인할 때 사용하는 ID입니다.</h5><br><br>
-					<input id = "login" type = "submit" value = "로그인" style="cursor: pointer;"><br><br>
+					<input id = "login" type = "submit" value = "로그인" style="cursor: pointer; width: 250px;">
+					<div style="margin-top: -12%;margin-left: 69%;">
+					<a href = "https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=afcac90f7173cac9376acb7ea7547854&redirect_uri=http://localhost:8989/project/kakaologin.do&response_type=code">
+						<img  src="<%=contextPath %>/resources/img/kakaologin.png" style="cursor: pointer;" >
+					</a>
+					</div>
+					<!-- <input type = "button" value = "카카오톡 로그인" style="width: 250px;"> -->
+					<br><br>
 					<a href ="#" style="font-weight: 600;">ID또는 암호를 잊으셨습니까?</a><br><br>
 					<a href ="<%=contextPath %>/signup.do" style="font-weight: 600;">ID가 없으신가요? 지금 생성.</a>
 				</div>
@@ -74,17 +81,8 @@
 		
 </body>
 <script type="text/javascript">
-/* var message = "";
-
-$(function () {
-	message = $('#message').val();
-	
-});
-
-$('#login').click(function () {
-	if(message != ""){
-		alert(message);
-	}
-}); */
+function kakaologin() {
+	location.href = '';
+}
 </script>
 </html>

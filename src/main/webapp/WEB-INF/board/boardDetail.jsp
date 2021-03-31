@@ -87,13 +87,13 @@
 					</div>
 					<div style = "height: 30%;">
 					<br>
+						<div id = "commenttest">
+						<br>
+						</div>
 						<c:forEach var = "comt" items="${commentlists }">
 							<div style="width: 100%; height: auto; overflow: visible;">
 								<!-- 새로운 댓글 쓰기 전용 div -->
 								<table style="table-layout:fixed; white-space: normal; ">
-									<div id = "commenttest">
-										
-									</div>
 									<tr>
 										<td style="border-left: 40px solid white;">${comt.mid }</td>
 										<td style="border-left: 100px solid white;width: 35%;">${comt.comt_content }</td>
@@ -140,11 +140,16 @@
 						
 						var result = '';
 						for(var i in data) {
-						result += '<tr>';
-						result += '<td style="border-left: 40px solid white;">'+data[i].mid+'</td>';
-						result += '<td style="border-left: 100px solid white;width: 35%;">'+data[i].comt_content+'</td>';
-						result += '<td style="border-left: 480px solid white; font-size: 13px;width: 65%;">'+data[i].comt_inputdate+'</td>';
-						result += '</tr>';
+						result +=	"<table style='table-layout:fixed; white-space: normal; '>";
+						result +=	"<tr>"
+						result +=	"<td style='border-left: 40px solid white;'>"+data[i].mid+"</td>";
+						result +=	"<td style='border-left: 100px solid white;width: 35%;'>"+data[i].comt_content+"</td>";
+						result +=   "<td style='border-left: 480px solid white; font-size: 13px;width: 65%;'>"+data[i].comt_inputdate+"</td>";
+						result +=	"</tr>";
+						result +=   "</table>";
+						result += "<br>";
+							
+							
 						}
 						
 						$('#commenttest').html(result);
