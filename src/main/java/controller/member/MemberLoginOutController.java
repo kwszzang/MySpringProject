@@ -92,7 +92,12 @@ public class MemberLoginOutController {
             session.setAttribute("userId", userInfo.get("email"));
             session.setAttribute("access_Token", access_Token);
         }
-        this.mav.setViewName("redirect:/login.do");
+        String kakaoname = (String) userInfo.get("nickname");
+        //카카오톡 loginfo
+        session.setAttribute("kakaoname", kakaoname);
+        
+        System.out.println("카카오톡으로 로그인 된 닉네임 확인 : "+kakaoname);
+        this.mav.setViewName("redirect:/main.co");
         
         return this.mav;
 	}
@@ -107,4 +112,17 @@ public class MemberLoginOutController {
 		
 		return this.mav;
 	}
+	
+	
+//	@GetMapping(value="kakaologout.do")
+//	public ModelAndView logout(HttpSession session) {
+//		
+//	    //kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+//	    
+//	    session.invalidate();
+//	    
+//	    this.mav.setViewName("redirect:/main.co");
+//		
+//		return this.mav;
+//	}
 }

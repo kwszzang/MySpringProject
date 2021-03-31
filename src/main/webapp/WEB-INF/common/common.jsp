@@ -10,6 +10,10 @@
 <c:if test="${not empty sessionScope.loginfo}">
 	<c:set var="whologin" value="1" />
 </c:if>
+
+<c:if test="${not empty sessionScope.kakaoname}">
+	<c:set var="whologin" value="2" />
+</c:if>
 <% String contextPath = request.getContextPath() ;
    String contextUrl = request.getRequestURI();
 %>
