@@ -20,12 +20,6 @@
 	<div style="background-color: #5801FF; height: 120px; padding-top: 3%;">
 		<div style="text-align: center;font-family: Myriad;font-size: 35px;font-weight: 700;letter-spacing: 0.2px;line-height: 1.5;color: yellow;">
 			<span>이벤트 문구</span><br>
-			<button onclick="test()">xxxxx</button>
-			<script type="text/javascript">
-				function test() {
-					location.href='login.do';
-				}
-			</script>
 		</div>
 	</div>
 	<div>
@@ -42,7 +36,7 @@
 				</c:if>	
 				
 				<c:if test="${whologin == 2}">
-					<span>${kakaoname }&nbsp;&nbsp;님(카카오 로그인)</span>
+					<span>${kakaoname }님 (카카오 로그인)</span>
 					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
 				</c:if>	
 			</div>

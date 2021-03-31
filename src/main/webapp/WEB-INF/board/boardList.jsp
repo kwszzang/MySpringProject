@@ -37,6 +37,11 @@
 					<span>${loginfo.name }님</span>
 					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
 				</c:if>	
+				
+				<c:if test="${whologin == 2}">
+					<span>${kakaoname }님 (카카오 로그인)</span>
+					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+				</c:if>	
 			</div>
 		</div>
 	</div>
@@ -53,6 +58,7 @@
 			<hr>
 		</div>
 		<div>
+			<input id = "brdType" type = "text" value = "${brd_type }">
 			<table style="width: 49%;margin-left: 27%;margin-bottom: -20%;text-align: center;height: 80%;">
 	      <thead>
 	        <tr>
@@ -72,7 +78,7 @@
 				<tr>
 					<td colspan="5" style="text-align: right;padding-right: 2%;" >
 						<button style="width: 90px;height: 40px; cursor: pointer;" 
-						onclick="location.href = 'writeboard.bo?brd_tpye=1';">글쓰기</button>
+						onclick="writeboard()">글쓰기</button>
 					</td>
 				</tr>
 		      </tbody>
@@ -84,7 +90,9 @@
 
 <script type="text/javascript">
 	function writeboard() {
-		href.location
+		var brd_type = parseInt($('#brdType').val());
+		console.log(brd_type);
+		location.href = "writeboard.bo?brd_type="+brd_type;
 	}
 </script>
 </html>

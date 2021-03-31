@@ -36,5 +36,10 @@ public class BoardDao {
 	}
 
 
+	public int WriteBoard(Board board) {
+		return this.abcd.insert(namespace+"WriteBoard",board);
+	}
+
+
 
 }

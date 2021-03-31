@@ -25,6 +25,11 @@
 			,b.brd_content as brd_content,b.brd_inputdate as brd_inputdate,b.brd_hitnum as brd_hitnum, b.seq_brd as seq_brd
 			from board b inner join member m on b.mid = m.mid where b.seq_brd = #{seq_brd}
 		</select>
+		
+		<insert id="WriteBoard" parameterType="MyBoard">
+			insert into board values(seq_brd.nextval, #{mid}, #{brd_type}, #{brd_subject},
+			#{brd_content}, sysdate, 0)
+		</insert>
 	</mapper>
 	
 	

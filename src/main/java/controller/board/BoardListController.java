@@ -51,6 +51,8 @@ public class BoardListController {
 		this.mav.addObject("lists",lists);
 		
 		
+		System.out.println("국내게시판 brd_type 확인 : "+ brd_type);
+		this.mav.addObject("brd_type", brd_type);
 		
 		
 		this.mav.setViewName("/board/boardList");

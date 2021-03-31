@@ -58,6 +58,11 @@
 					<span>${loginfo.name }님</span>
 					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
 				</c:if>	
+				
+				<c:if test="${whologin == 2}">
+					<span>${kakaoname }님 (카카오 로그인)</span>
+					<a href = "<%=contextPath %>/logout.do" style="margin-left:10%;text-decoration: none;">임시 로그아웃</a>
+				</c:if>	
 			</div>
 		</div>
 	</div>
