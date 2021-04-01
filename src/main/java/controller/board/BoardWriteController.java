@@ -90,15 +90,9 @@ public class BoardWriteController {
 		
 		board.setMid(mid);
 		board.setBrd_type(brd_type);
-			@SuppressWarnings("unchecked")
-			List<Board> aList = (List<Board>) session.getAttribute("loginfo");
 			
 			
 			System.out.println("바인딩 리절트 : "+error.getClass());
-			for (int i = 0; i < aList.size(); i++) {
-				System.out.println("테스트 : "+aList.get(i));
-			}
-			
 			
 			if(error.hasErrors()) {
 				

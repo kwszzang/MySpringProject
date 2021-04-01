@@ -37,7 +37,6 @@ public class BoardListController {
 			) {
 		
 		int brd_type = Integer.parseInt(fakebrd_type);
-		System.out.println("게시판 타입 확인 : "+brd_type);
 		
 		//로그인 한 사람 정보 
 		List<Member> loginList = new ArrayList<Member>();
@@ -51,7 +50,6 @@ public class BoardListController {
 		this.mav.addObject("lists",lists);
 		
 		
-		System.out.println("국내게시판 brd_type 확인 : "+ brd_type);
 		this.mav.addObject("brd_type", brd_type);
 		
 		
