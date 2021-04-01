@@ -76,7 +76,7 @@
 			</div>
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
-					<a href = "#">해외 게시판</a><br>
+					<a href = "<%=contextPath%>/boardlist.bo?brd_type=2">해외 게시판</a><br>
 				</div>
 			</div>
 		</div>

@@ -38,6 +38,15 @@ public class BoardListController {
 		
 		int brd_type = fakebrd_type;
 		
+		String boardName = "";
+		if(brd_type == 1) {
+			boardName = "국내 게시판";
+		}else {
+			boardName = "해외 게시판";
+		}
+		
+		this.mav.addObject("boardName",boardName);
+		
 		//로그인 한 사람 정보 
 		List<Member> loginList = new ArrayList<Member>();
 		loginList.add((Member) session.getAttribute("loginfo"));
