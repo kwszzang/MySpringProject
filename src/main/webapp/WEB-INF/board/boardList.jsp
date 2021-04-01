@@ -58,7 +58,7 @@
 			<hr>
 		</div>
 		<div>
-			<input id = "brdType" type = "text" value = "${brd_type }">
+			<input id = "brdType" type = "hidden" value = "${brd_type }">
 			<table style="width: 49%;margin-left: 27%;margin-bottom: -20%;text-align: center;height: 80%;">
 	      <thead>
 	        <tr>

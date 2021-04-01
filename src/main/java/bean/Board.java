@@ -1,15 +1,21 @@
 package bean;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class Board {
 	private int seq_brd;
 	private String mid;
 	private int brd_type;
-	@Length(min = 1, max = 20, message = "20자 넘으면 안됩니다.")
+	@NotEmpty
+	@Length(min = 2, max = 20, message = "최소 1글자, 최대 20자입니다")
 	private String brd_subject;
-	@Length(min=1, max = 300,message = "300자 이하로 작성 가능합니다.")
+	
+	@NotEmpty
+	@Length(min=2, max = 300,message = "최소 1글자, 최대 300자 작성 가능합니다.")
 	private String brd_content;
+	
+	
 	private String brd_inputdate;
 	private int brd_hitnum;
 	

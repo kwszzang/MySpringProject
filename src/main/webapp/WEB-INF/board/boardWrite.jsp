@@ -14,6 +14,9 @@
 		font-weight: 600;
 		font-size: 15px;
 	}
+	.err{
+    color: red;
+	}
 </style>
 </head>
 <body>
@@ -47,25 +50,29 @@
 			<h1 style="font-size: 35px;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</h1>
 		</a>
 	</div>
-	<form action="<%=contextPath%>/writeboard.bo" method="post">
+	<c:set var="apppath" value="<%=contextPath%>"/>
+	
+	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="post">
 		<input type = "text" value = "${brd_type }" name = "brd_type">
 		<div style="margin-left: 26%;margin-top: 5%;">
-			<input type = "text" name = "brd_subject"><br>
-			<input type = "file" name = "file_name"><br>
-			<textarea rows="40" cols="130" name = "brd_subject"></textarea>
+			<form:input path = "brd_subject" type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
+			<form:errors path = "brd_subject" cssClass="err"/><br>
+			<input type = "file" name = "file_name"/><br>
+			<form:textarea path = "brd_content" rows="40" cols="130" name = "brd_content"/>
+			<form:errors path = "brd_content" cssClass="err"/><br>
 		</div>
 		<div style="margin-left: 66.5%;margin-top: 1%;">
 			<button id = "cancel_btn" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
 			<input  type = "submit" value = "글쓰기" style="width: 80px;height: 40px;">
 		</div>
-	</form>
+	</form:form>
 </body>
 <script type="text/javascript">
 	$('#cancel_btn').click(function() {
 		if(confirm('작성을 취소하고 이전 페이지로 이동하겠습니까?')){
 			history.back();
 		}else{
-			
+			console.log('왜 오류뜨지;');
 		}
 	});
 </script>
