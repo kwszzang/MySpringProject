@@ -110,11 +110,13 @@
 	   		</div>
    		</div>
    		<div style="width: 100%; background-color: green; height: 81%;">
-   			<select>
-   				<option>-------골라주세요------</option>
+   			<select style="margin-left: 5%;width: 90%;margin-top: 5%;height: 33%;font-size: 22px;font-weight: 500;">
    				<option>제목</option>
    				<option>작성자</option>
    			</select>
+   			<div style="margin-top: 5%;margin-left: 5%;">
+   				<input type = "text" placeholder="검색어를 입력해주세요." style="width: 95%; height: 33%;padding-left: 4%;font-size: 22px;font-weight: 500;">
+   			</div>
    		</div>
    	</div>
    	
