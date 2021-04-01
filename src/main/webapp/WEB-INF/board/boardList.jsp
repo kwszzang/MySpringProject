@@ -58,7 +58,7 @@
 			<hr>
 		</div>
 		<div>
-			<input id = "brdType" type = "hidden" value = "${brd_type }">
+			<input id = "brd_type" type = "hidden" value = "${brd_type }">
 			<table style="width: 49%;margin-left: 27%;margin-bottom: -20%;text-align: center;height: 80%;">
 	      <thead>
 	        <tr>
@@ -76,21 +76,57 @@
 					<tr>
 				</c:forEach>
 				<tr>
+					<td colspan="1">
+						<button style="width: 50px;height: 30px; cursor: pointer;">
+							검색
+						</button>
+					</td>
 					<td colspan="5" style="text-align: right;padding-right: 2%;" >
 						<button style="width: 90px;height: 40px; cursor: pointer;" 
 						onclick="writeboard()">글쓰기</button>
 					</td>
+					
 				</tr>
 		      </tbody>
 	    	</table>
 		</div>
 	</div>	
-	
+	<div style="float: left;margin-left: 42%; margin-top: 20%;">
+    	<!-- 페이징 처리할 곳 -->
+    	<div>
+    		<p>이전 1 2 3 4 5 6 7 8 9 10 다음</p>
+    	</div>
+   	</div>
+   	
+   	<!-- 검색 누르면 나올 창 -->
+   	
+   	<div style="width: 20%;background-color: red;height: 19%;position: absolute;left: 39%;z-index: 20;top: 87%;">
+   		<div style="width: 100%; background-color: pink; height: 19%;">
+	   		<div style="float: left;font-size: 15px;font-weight: bold;line-height: 2rem;margin-left: 3%;">
+	   			검색
+	   		</div>
+	   		<div style="float: left; margin-left: 83%; margin-top: 1%;">
+	   			<button style="">x</button>
+	   		</div>
+   		</div>
+   		<div style="width: 100%; background-color: green; height: 81%;">
+   			<select>
+   				<option>-------골라주세요------</option>
+   				<option>제목</option>
+   				<option>작성자</option>
+   			</select>
+   		</div>
+   	</div>
+   	
+   	<!-- 배경 회색 만들어줄 애  -->
+   	<div class="backgound_black" style="width:100%; height:132%; z-index:10; background-color:#000; opacity: 0.5; margin-top: -40.4%; display: none; "></div>
+   	
+   	
 </body>
 
 <script type="text/javascript">
 	function writeboard() {
-		var brd_type = parseInt($('#brdType').val());
+		var brd_type = parseInt($('#brd_type').val());
 		console.log(brd_type);
 		location.href = "writeboard.bo?brd_type="+brd_type;
 	}

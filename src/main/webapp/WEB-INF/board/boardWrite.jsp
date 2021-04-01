@@ -53,7 +53,7 @@
 	<c:set var="apppath" value="<%=contextPath%>"/>
 	
 	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="post">
-		<input type = "text" value = "${brd_type }" name = "brd_type">
+		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type">
 		<div style="margin-left: 26%;margin-top: 5%;">
 			<form:input path = "brd_subject" type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
 			<form:errors path = "brd_subject" cssClass="err"/><br>
@@ -68,8 +68,11 @@
 	</form:form>
 </body>
 <script type="text/javascript">
+
+	//되다가 갑자기 안됨 400에러
 	$('#cancel_btn').click(function() {
 		if(confirm('작성을 취소하고 이전 페이지로 이동하겠습니까?')){
+			console.log('오류 왜 나요 갑자기');
 			history.back();
 		}else{
 			console.log('왜 오류뜨지;');

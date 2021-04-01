@@ -7,15 +7,6 @@ public class Board {
 	private int seq_brd;
 	private String mid;
 	private int brd_type;
-	@NotEmpty(message = "필수 입력 사항입니다.")
-	@Length(min = 1, max = 20, message = "최소 1글자, 최대 20자입니다")
-	private String brd_subject;
-	
-	@NotEmpty(message = "필수 입력 사항입니다.")
-	@Length(min=1, max = 300,message = "최소 1글자, 최대 300자 작성 가능합니다.")
-	private String brd_content;
-	
-	
 	private String brd_inputdate;
 	private int brd_hitnum;
 	
@@ -28,6 +19,20 @@ public class Board {
 	private int seq_comt;
 	private String comt_content;
 	private String comt_inputdate;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Length(min = 1, max = 20, message = "최소 1글자, 최대 20자입니다")
+	private String brd_subject;
+	
+	@NotEmpty(message = "필수 입력 사항입니다.")
+	@Length(min=1, max = 300,message = "최소 1글자, 최대 300자 작성 가능합니다.")
+	private String brd_content;
+	
+	
+	
+	
+	
+	
 	
 	//join 용 member getter / setter
 	

@@ -5,7 +5,7 @@
 	<mapper namespace="NsBoard">
 		<select id="SelectListByType" resultType="MyBoard" parameterType="Integer">
 			select seq_brd, brd_hitnum, brd_subject,brd_content, to_char(brd_inputdate,'YYYY/MM/DD') as brd_inputdate, mid 
-			from board where brd_type = #{brd_type}
+			from board where brd_type = #{brd_type} order by brd_inputdate desc
 		</select>
 		
 		<update id="UpdateHitnum" parameterType="Integer">

@@ -32,11 +32,11 @@ public class BoardListController {
 	
 	@GetMapping(value = "boardlist.bo")
 	public ModelAndView doGet(
-			@RequestParam(value = "brd_type")String fakebrd_type,
+			@RequestParam(value = "brd_type")int fakebrd_type,
 			HttpSession session
 			) {
 		
-		int brd_type = Integer.parseInt(fakebrd_type);
+		int brd_type = fakebrd_type;
 		
 		//로그인 한 사람 정보 
 		List<Member> loginList = new ArrayList<Member>();

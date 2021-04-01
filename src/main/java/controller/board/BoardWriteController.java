@@ -60,7 +60,6 @@ public class BoardWriteController {
 			out.flush();
 			out.close();
 			
-			//this.mav.setViewName("redirect:/login.do");
 		}
 		
 		this.mav.addObject("brd_type",brd_type);
@@ -76,14 +75,12 @@ public class BoardWriteController {
 			HttpSession session,
 			BindingResult error,
 			HttpServletResponse response,
-			@RequestParam(value = "brd_type")int fakebrd_type
+			@RequestParam(value = "brd_type")int brd_type
 			) throws IOException {
-//		response.setContentType("text/html; charset=UTF-8");
-//		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		System.out.println("글쓰기 컨트롤러 포스트 여기까지 오긴 오냐? ");
-		int brd_type = fakebrd_type;
-		System.out.println("게시판 타입 : " +board.getBrd_type());
+		
 		Member member = (Member)session.getAttribute("loginfo");
 		String mid = member.getMid();
 		
@@ -91,36 +88,24 @@ public class BoardWriteController {
 		board.setMid(mid);
 		board.setBrd_type(brd_type);
 			
-			
-			System.out.println("바인딩 리절트 : "+error.getClass());
-			
+			//에러가 있다고 안 뜸 현재 ...ㅠㅠ 
+			//유효성 검사하면 400 에러 
 			if(error.hasErrors()) {
+				out.write("<script>alert('유효성 검사 문제');history.go(-1);</script>");
+				out.flush();
+				out.close();
 				
 				
-//				out.println("<script>alert('유효성 검사 문제');</script>");
-//				out.flush();
-//				out.close();
-				
-				
-				System.out.println("유효성 문제 있음 ");
-				this.mav.setViewName("redirect:/writeboard.bo");
 			}else {
 				
-//				out.println("<script>alert('유효성 검사 통과');</script>");
-//				out.flush();
-//				out.close();
-				System.out.println("유효성에 문제 없음");
-//				int cnt = -9999;
-//				cnt = this.bdao.WriteBoard(board);
+				int cnt = -9999;
+				cnt = this.bdao.WriteBoard(board);
 				
 				if (files != null && files.length > 0) {
-					System.out.println("첨부 파일이 들어왔네요");
 				}
 				
 				this.mav.setViewName("redirect:/boardlist.bo");
 			}
-			
-
 		
 		return this.mav;
 	}
