@@ -31,6 +31,15 @@
 			#{brd_content}, sysdate, 0)
 		</insert>
 		
+		<select id="SelectListByKeyword" resultType="MyBoard">
+			select seq_brd, brd_hitnum, brd_subject,brd_content, to_char(brd_inputdate,'YYYY/MM/DD') as brd_inputdate, mid
+			from board where brd_type = #{brd_type} and 
+			<if test="mode != null">
+				#{mode} like '%'||#{keyword}||'%'
+			</if>
+			 order by brd_inputdate desc			
+		</select>
+		
 	</mapper>
 	
 	

@@ -40,6 +40,14 @@ public class BoardDao {
 		return this.abcd.insert(namespace+"WriteBoard",board);
 	}
 
+	public List<Board> SelectListByKeyword(String mode, String keyword, int brd_type) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mode", mode);
+		map.put("keyword",keyword);
+		map.put("brd_type", brd_type);
+		return this.abcd.selectList(namespace+"SelectListByKeyword",map);
+	}
+
 
 
 }
