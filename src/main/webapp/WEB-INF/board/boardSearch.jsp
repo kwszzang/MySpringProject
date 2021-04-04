@@ -16,6 +16,7 @@
 	 }
 	 tr{
 	 	border: none;
+	 	height: 45px;
 	 }
 </style>
 </head>
@@ -65,9 +66,9 @@
 	          <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
 	        </tr>
 	      </thead>
-		      <tbody>
-		       <c:forEach var = "brd" items="${lists }">
-				   <tr>
+		      <tbody style="height: 45px;">
+		       <c:forEach var = "brd" items="${boardList }">
+				   <tr style="height: 45px;">
 					   <td style="width: 5%;">${brd.seq_brd }</td>
 					   <td style="width: 60%;"><a href = "<%=contextPath%>/detailview.bo?seq_brd=${brd.seq_brd}&brd_type=${brd.brd_type}">${brd.brd_subject }</a></td>
 				       <td style="width: 10%;">${brd.mid }</td>

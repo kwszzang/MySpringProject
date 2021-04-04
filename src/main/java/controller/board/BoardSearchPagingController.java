@@ -1,6 +1,9 @@
 package controller.board;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,7 +35,7 @@ public class BoardSearchPagingController {
 			@RequestParam(value = "mode")int fakemode,
 			@RequestParam(value = "brd_type")String fakebrd_type) {
 		//1= 제목, 2 = 작성자
-		System.out.println("키워드 : "+fakemode);
+		System.out.println("모드  : "+fakemode);
 		String mode = "";
 		if(fakemode == 1) {
 			mode = "brd_subject";
@@ -56,13 +59,21 @@ public class BoardSearchPagingController {
 		
 		this.mav.addObject("boardName",boardName);
 		
-		
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("keyword", "%"+keyword+"%");
+		map.put("mode", mode);
+		map.put("brd_type", brd_type);
 		//검색어로 출력될 결과물
-		List<Board> boardList = this.bdao.SelectListByKeyword(mode, keyword,brd_type);
+		List<Board> boardList = this.bdao.SelectListByKeyword(map);
 		
 		if(boardList.isEmpty()) {
 			
 			System.out.println("검색된게 없어요~~~ 왜이러냐~~");
+		}else {
+			 for(Board bean : boardList) {
+				 System.out.println(bean.getBrd_subject());
+				 System.out.println(bean.getMid());
+			 }
 		}
 		
 		this.mav.addObject("boardList",boardList);

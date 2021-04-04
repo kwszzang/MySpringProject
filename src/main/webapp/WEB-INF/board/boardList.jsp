@@ -16,6 +16,7 @@
 	 }
 	 tr{
 	 	border: none;
+	 	height: 45px;
 	 }
 </style>
 </head>
