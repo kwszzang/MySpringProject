@@ -66,7 +66,6 @@ public class BoardWriteController {
 			out.println("<script>alert('로그인 먼저 해주세요.');location.href = 'login.do';</script>");
 			out.flush();
 			out.close();
-			
 		}
 		
 		this.mav.addObject("brd_type",brd_type);

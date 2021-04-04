@@ -84,8 +84,8 @@
 					</div>
 					<div style = "height: 30%;margin-left: 9%;">
 						댓글 입력<br>
-						<input id = "seq_Brd" type = "text" value = "${brd.seq_brd }">
-						<input id = "loginId" type = "text" value= "${loginfo.mid }">
+						<input id = "seq_Brd" type = "hidden" value = "${brd.seq_brd }">
+						<input id = "loginId" type = "hidden" value= "${loginfo.mid }">
 						<textarea id="comments" rows="12" cols="130"></textarea>
 							<div>
 								<button onclick="Write()" style="margin-left: 81.5%;width: 9%;height: 16%;background-color: #cecedc;
@@ -93,7 +93,6 @@
 								 댓글 작성
 								</button>
 							</div>
-							
 					</div>
 					<div style = "height: 30%;">
 					<hr>
@@ -158,7 +157,7 @@
 						result +=   "<td style='border-left: 480px solid white; font-size: 13px;width: 65%;'>"+data[i].comt_inputdate+"</td>";
 						result +=	"</tr>";
 						result +=   "</table>";
-						result += "<br>";
+						result +=   "<br>";
 							
 							
 						}

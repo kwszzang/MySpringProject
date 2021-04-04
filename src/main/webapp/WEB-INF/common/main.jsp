@@ -68,7 +68,7 @@
 	</div>
 	
 		<!-- 커뮤니티 메뉴  -->
-		<div id="commuity_menu" style="position: absolute;top: 38.9%;left: 34.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
+		<div id="commuity_menu" style="position: absolute;top: 38.9%;left: 35.5%;z-index: 100;width: 150px;background-color: grey;height: 90px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
 					<a href = "<%=contextPath%>/boardlist.bo?brd_type=1">국내 게시판</a><br>
