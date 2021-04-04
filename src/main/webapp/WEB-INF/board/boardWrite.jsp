@@ -27,7 +27,7 @@
 	</div>
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
-			<div style="margin-left: 93%;">
+			<div style="margin-left: 90%;">
 				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
@@ -53,7 +53,7 @@
 	<c:set var="apppath" value="<%=contextPath%>"/>
 	
 	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="post" enctype="multipart/form-data">
-		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type">
+		
 		<div style="margin-left: 26%;margin-top: 5%;">
 			<form:input path = "brd_subject" type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
 			<form:errors path = "brd_subject" cssClass="err"/><br>
@@ -65,6 +65,8 @@
 			<button id = "cancel_btn" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
 			<input  type = "submit" value = "글쓰기" style="width: 80px;height: 40px;">
 		</div>
+		
+		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type">
 	</form:form>
 </body>
 <script type="text/javascript">

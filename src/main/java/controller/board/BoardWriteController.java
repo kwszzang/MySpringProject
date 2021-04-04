@@ -78,10 +78,11 @@ public class BoardWriteController {
 	public ModelAndView doPost(
 			@ModelAttribute("board") @Valid Board board,
 			@RequestParam(value = "file_name") MultipartFile[] files,
+			@RequestParam(value = "brd_type")int brd_type,
 			HttpSession session,
 			BindingResult error,
-			HttpServletResponse response,
-			@RequestParam(value = "brd_type")int brd_type
+			HttpServletResponse response
+			
 			) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -161,9 +162,11 @@ public class BoardWriteController {
 					System.out.println("파일 첨부 안됨");
 
 				}
-				
+				this.mav.setViewName("redirect:/boardlist.bo");
+				this.mav.addObject("brd_type",brd_type);
 			}
-			this.mav.setViewName("redirect:/boardlist.bo");
+			
+			
 			return this.mav;
 	}
 }

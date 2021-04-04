@@ -48,7 +48,7 @@
 	</div>
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
-			<div style="margin-left: 93%;">
+			<div style="margin-left: 90%;">
 				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
