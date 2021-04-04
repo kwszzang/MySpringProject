@@ -1,8 +1,10 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,8 +18,11 @@ public class BoardDao {
 	@Autowired
     SqlSessionTemplate abcd;
 
-	public List<Board> SelectListByType(int brd_type) {
-		return this.abcd.selectList(namespace+"SelectListByType",brd_type);
+	public List<Board> SelectListByType(int brd_type, int startIndex, int endIndex) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		RowBounds rowBounds = new RowBounds(startIndex, endIndex);
+		map.put("brd_type",brd_type);
+		return this.abcd.selectList(namespace+"SelectListByType",map,rowBounds);
 	}
 
 	public int UpdateHitnum(int seq_brd) {
@@ -40,8 +45,14 @@ public class BoardDao {
 	}
 
 	public List<Board> SelectListByKeyword(Map<String,Object> map) {
-		System.out.println(map);
-		return this.abcd.selectList(namespace+"SelectListByKeyword",map);
+		int startIndex = (Integer) map.get("startIndex");
+		int endIndex = (Integer) map.get("endIndex");
+		RowBounds rowBounds = new RowBounds(startIndex, endIndex);
+		return this.abcd.selectList(namespace+"SelectListByKeyword",map,rowBounds);
+	}
+
+	public int SelectListCnt(int brd_type) {
+		return this.abcd.selectOne(namespace+"SelectListCnt",brd_type);
 	}
 
 

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.Board;
 import dao.BoardDao;
+import utility.Paging;
 
 @Controller
 public class BoardSearchPagingController {
@@ -33,7 +34,8 @@ public class BoardSearchPagingController {
 	public ModelAndView doPost(
 			@RequestParam(value = "keyword")String keyword,
 			@RequestParam(value = "mode")int fakemode,
-			@RequestParam(value = "brd_type")String fakebrd_type) {
+			@RequestParam(value = "brd_type")int brd_type,
+			@RequestParam(defaultValue="1") int curPage) {
 		//1= 제목, 2 = 작성자
 		System.out.println("모드  : "+fakemode);
 		String mode = "";
@@ -45,10 +47,10 @@ public class BoardSearchPagingController {
 		
 		//내가 입력한 검색어
 		System.out.println("검색어 : "+keyword);
-		int brd_type = Integer.parseInt(fakebrd_type);
+		//int brd_type = Integer.parseInt(fakebrd_type);
 		
 		System.out.println("게시판 타입 : "+brd_type);
-		
+		this.mav.addObject("brd_type",brd_type);
 		
 		String boardName = "";
 		if(brd_type == 1) {
@@ -59,24 +61,42 @@ public class BoardSearchPagingController {
 		
 		this.mav.addObject("boardName",boardName);
 		
-		Map<String, Object>map = new HashMap<String, Object>();
+		
+		//검색어로 출력될 결과물
+		//페이징 처리
+		int listCnt = this.bdao.SelectListCnt(brd_type);
+		
+		Paging paging = new Paging(listCnt, curPage);
+		
+		this.mav.addObject("pagination", paging);
+		
+		
+		int startIndex = paging.getStartIndex();
+        int endIndex =startIndex+10;
+        
+        Map<String, Object>map = new HashMap<String, Object>();
 		map.put("keyword", "%"+keyword+"%");
 		map.put("mode", mode);
 		map.put("brd_type", brd_type);
-		//검색어로 출력될 결과물
+		map.put("startIndex", startIndex);
+		map.put("endIndex", endIndex);
+        
 		List<Board> boardList = this.bdao.SelectListByKeyword(map);
+		
 		
 		if(boardList.isEmpty()) {
 			
 			System.out.println("검색된게 없어요~~~ 왜이러냐~~");
 		}else {
-			 for(Board bean : boardList) {
-				 System.out.println(bean.getBrd_subject());
-				 System.out.println(bean.getMid());
-			 }
+//			 for(Board bean : boardList) {
+//				 System.out.println(bean.getBrd_subject());
+//				 System.out.println(bean.getMid());
+//			 }
 		}
 		
 		this.mav.addObject("boardList",boardList);
+		this.mav.addObject("listCnt", listCnt);
+		
 		this.mav.setViewName("board/boardSearch");
 		
 		return this.mav;
