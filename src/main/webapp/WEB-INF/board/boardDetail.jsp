@@ -58,7 +58,7 @@
 						<div style="float: left; margin-left: 60%;">
 							조회수 : ${brd.brd_hitnum }&nbsp;&nbsp;
 						</div>
-						<div style="float: left; margin-left: 1%;">
+						<div style="float: left; margin-left: 0%;">
 						 	댓글수 : ${cnt }
 						 </div>
 					</div>
@@ -70,13 +70,17 @@
 					<br>
 						파일(이미지) 자리
 					</div>
-					<div style = "background-color: yellow;">
-					<br>
+					<hr>
+					<div style = "">
 						${brd.brd_content }
 					</div>
-					<div style = "height: 10%;background-color: green;">
-					<br>
-						첨부파일자리
+					<div style = "height: 10%;">
+					<hr>
+					<c:forEach var = "file" items="${boardFile }">
+						<span>첨부 파일 목록 </span>
+						<p><a href = "#">${file.file_name }</a></p>
+					</c:forEach>
+					<hr>
 					</div>
 					<div style = "height: 30%;margin-left: 9%;">
 						댓글 입력<br>
@@ -89,8 +93,10 @@
 								 댓글 작성
 								</button>
 							</div>
+							
 					</div>
 					<div style = "height: 30%;">
+					<hr>
 					<br>
 						<div id = "commenttest">
 						<br>

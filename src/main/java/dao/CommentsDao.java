@@ -31,7 +31,6 @@ public class CommentsDao {
 	}
 
 	public int SelectComments() {
-		
 		return this.abcd.selectOne(namespace+"SelectComments");
 	}
 

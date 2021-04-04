@@ -59,6 +59,18 @@ public class BoardDao {
 		return this.abcd.selectOne(namespace+"SelectListSearchCnt",map2);
 	}
 
+	public int SelectcurrVal() {
+		return this.abcd.selectOne(namespace+"SelectcurrVal");
+	}
+
+	public int insertFile(Map<String, Object> fileMap) {
+		return this.abcd.insert(namespace+"insertFile",fileMap);
+	}
+
+	public List<Board> SelectFileList(int seq_brd) {
+		return this.abcd.selectList(namespace+"SelectFileList",seq_brd);
+	}
+
 
 
 }

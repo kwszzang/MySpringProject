@@ -34,8 +34,8 @@ public class BoardListController {
 	@GetMapping(value = "boardlist.bo")
 	public ModelAndView doGet(
 			@RequestParam(value = "brd_type")int brd_type,
-			HttpSession session,
-			@RequestParam(defaultValue="1") int curPage
+			@RequestParam(defaultValue="1") int curPage,
+			HttpSession session
 			) {
 		
 		

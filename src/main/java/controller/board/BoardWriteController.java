@@ -1,10 +1,15 @@
 package controller.board;
 
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +32,8 @@ import dao.BoardDao;
 
 @Controller
 public class BoardWriteController {
+	
+	private String baseDir = "c:" + File.separator + "upload"+File.separator;
 	
 	@Autowired
 	@Qualifier("bdao")
@@ -71,7 +78,7 @@ public class BoardWriteController {
 	@PostMapping(value = "writeboard.bo")
 	public ModelAndView doPost(
 			@ModelAttribute("board") @Valid Board board,
-			@RequestParam(value = "file_name",required = false) MultipartFile[] files,
+			@RequestParam(value = "file_name") MultipartFile[] files,
 			HttpSession session,
 			BindingResult error,
 			HttpServletResponse response,
@@ -91,22 +98,73 @@ public class BoardWriteController {
 			//에러가 있다고 안 뜸 현재 ...ㅠㅠ 
 			//유효성 검사하면 400 에러 
 			if(error.hasErrors()) {
-				out.write("<script>alert('유효성 검사 문제');history.go(-1);</script>");
+				out.write("<script>alert('유효성 검사 문제');history.go(-2);</script>");
 				out.flush();
 				out.close();
 				
 				
 			}else {
-				
+				System.out.println("아이디 : "+board.getMid());
+				System.out.println("게시판 타입 : "+ board.getBrd_type());
+				System.out.println("게시판 제목 : "+ board.getBrd_subject());
+				System.out.println("게시판 내용 : "+ board.getBrd_content());
 				int cnt = -9999;
 				cnt = this.bdao.WriteBoard(board);
 				
+				//방금 넣은 seq_brd 값 구하기
+				int seq_brd = this.bdao.SelectcurrVal();
+				
+				System.out.println("file 테이블에 insert 할 seq : "+seq_brd);
 				if (files != null && files.length > 0) {
+					String formattedDate = baseDir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
+					File f = new File(formattedDate);
+					if (!f.exists()) { 
+						f.mkdirs(); 
+					}
+
+					for (MultipartFile file : files) {
+						String type = file.getContentType();
+						String file1 = file.getOriginalFilename(); 
+						
+						long imsi = file.getSize();
+						int size = Long.valueOf(imsi).intValue();
+
+						String saveFileName = formattedDate + File.separator + file1; 
+
+						System.out.println("type :" + type);
+						System.out.println("originalFilename : " + file1);
+						System.out.println("size : " + size);
+						System.out.println("saveFileName : " + saveFileName);
+						
+						Map<String, Object> fileMap = new HashMap<String, Object>();
+						fileMap.put("file_name", file1);
+						fileMap.put("file_size", size);
+						fileMap.put("file_location", saveFileName);
+						fileMap.put("seq_brd", seq_brd);
+						
+						cnt = this.bdao.insertFile(fileMap);	
+						
+						
+						try (InputStream in = file.getInputStream();
+							FileOutputStream fos = new FileOutputStream(saveFileName)) {
+							int readCount = 0;
+							byte[] buffer = new byte[512];
+							while ((readCount = in.read(buffer)) != -1) {
+								
+								fos.write(buffer, 0, readCount);
+							}
+
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+					}
+				} else {
+					System.out.println("파일 첨부 안됨");
+
 				}
 				
-				this.mav.setViewName("redirect:/boardlist.bo");
 			}
-		
-		return this.mav;
+			this.mav.setViewName("redirect:/boardlist.bo");
+			return this.mav;
 	}
 }

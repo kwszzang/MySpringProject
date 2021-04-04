@@ -41,6 +41,7 @@ public class BoardDetailVIewController {
 		int cnt = -9999;
 		cnt = this.bdao.UpdateHitnum(seq_brd);
 		System.out.println("글 번호 확인 : "+seq_brd);
+		
 		//제목, 내용, 댓글수, 날짜, 글쓴이 보이기
 		List<Board> boardlist = this.bdao.SelectBoardList(seq_brd);
 		for (int i = 0; i < boardlist.size(); i++) {
@@ -60,7 +61,10 @@ public class BoardDetailVIewController {
 		
 		this.mav.addObject("commentlists", lists);
 		
+		//파일 조회용 
+		List<Board> boardFile = this.bdao.SelectFileList(seq_brd);
 		
+		this.mav.addObject("boardFile", boardFile);
 		
 		this.mav.setViewName("/board/boardDetail");
 		

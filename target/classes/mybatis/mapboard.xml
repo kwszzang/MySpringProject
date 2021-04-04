@@ -5,7 +5,7 @@
 	<mapper namespace="NsBoard">
 		<select id="SelectListByType" resultType="MyBoard" parameterType="HashMap">
 			select seq_brd, brd_hitnum, brd_subject,brd_content, to_char(brd_inputdate,'YYYY/MM/DD') as brd_inputdate, mid 
-			from board where brd_type = #{brd_type} order by brd_inputdate desc 
+			from board where brd_type = #{brd_type} order by seq_brd desc 
 		</select>
 		
 		<update id="UpdateHitnum" parameterType="Integer">
@@ -17,7 +17,7 @@
 			select m.mid as mid, m.name as name,c.comt_content as comt_content, c.comt_inputdate as comt_inputdate
 			from (board b inner join comments c on b.seq_brd = c.seq_brd)
 			inner join member m on c.mid = m.mid
-			 where b.seq_brd = #{seq_brd} order by c.comt_inputdate desc
+			 where b.seq_brd = #{seq_brd} order by c.seq_comt desc
 		</select>
 		
 		<select id="SelectBoardList" resultType="MyBoard" >
@@ -40,7 +40,7 @@
 			<if test="mode == 'brd_subject'">
 				brd_subject like #{keyword}
 			</if>
-			 order by brd_inputdate desc			
+			 order by seq_brd desc			
 		</select>
 		
 		<select id="SelectListCnt" parameterType="Integer" resultType="Integer">
@@ -55,7 +55,19 @@
 			<if test="mode == 'brd_subject'">
 				brd_subject like #{keyword}
 			</if>
-			 order by brd_inputdate desc	
+			 order by seq_brd desc	
+		</select>
+		
+		<select id="SelectcurrVal" resultType="Integer">
+			select * from (select seq_brd from board order by seq_brd desc) where rownum = 1
+		</select>
+		
+		<insert id="insertFile">
+			insert into boardfile values(seq_file.nextval, #{seq_brd}, #{file_name}, #{file_location}, #{file_size})
+		</insert>
+		
+		<select id="SelectFileList" resultType="MyBoard">
+			select file_name from boardfile where seq_brd = #{seq_brd}
 		</select>
 		
 	</mapper>

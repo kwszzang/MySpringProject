@@ -83,7 +83,6 @@ public class BoardSearchPagingController {
 			out.println("<script>alert('검색된 결과가 없습니다.');history.go(-01);</script>");
 			out.flush();
 			out.close();
-			System.out.println("검색된게 없어요~~~ 왜이러냐~~");
 		}else {
 			this.mav.addObject("boardList",boardList);
 			this.mav.addObject("brd_type",brd_type);
@@ -151,7 +150,6 @@ public class BoardSearchPagingController {
 			out.println("<script>alert('검색된 결과가 없습니다.');history.go(-01);</script>");
 			out.flush();
 			out.close();
-			System.out.println("검색된게 없어요~~~ 왜이러냐~~");
 		}else {
 			this.mav.addObject("boardList",boardList);
 			this.mav.addObject("brd_type",brd_type);

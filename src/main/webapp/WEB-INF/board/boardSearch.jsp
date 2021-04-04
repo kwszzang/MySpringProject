@@ -94,7 +94,7 @@
 	</div>	
 	<div style="float: left;margin-left: 42%; margin-top: 20%;">
     	<!-- 페이징 처리할 곳 -->
-    	<div>
+    	<div style="margin-top: 3%;font-size: 25px;">
            <c:if test="${pagination.curRange ne 1 }">
                <a href="#" onClick="fn_paging(1)">[처음]</a> 
            </c:if>
@@ -118,10 +118,6 @@
                <a href="#" onClick="fn_paging('${pagination.pageCnt }')">[끝]</a> 
            </c:if>
        </div>
-                
-          <div>
-              총 게시글 수 : ${pagination.listCnt } /    총 페이지 수 : ${pagination.pageCnt } / 현재 페이지 : ${pagination.curPage } / 현재 블럭 : ${pagination.curRange } / 총 블럭 수 : ${pagination.rangeCnt }
-          </div>
    	</div>
    	
    	<!-- 검색 누르면 나올 창 -->
