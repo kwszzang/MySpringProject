@@ -52,7 +52,7 @@
 	</div>
 	<c:set var="apppath" value="<%=contextPath%>"/>
 	
-	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="post" enctype="multipart/form-data">
+	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="POST" enctype="multipart/form-data">
 		
 		<div style="margin-left: 26%;margin-top: 5%;">
 			<form:input path = "brd_subject" type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
@@ -66,7 +66,7 @@
 			<input  type = "submit" value = "글쓰기" style="width: 80px;height: 40px;">
 		</div>
 		
-		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type">
+		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type"> 
 	</form:form>
 </body>
 <script type="text/javascript">

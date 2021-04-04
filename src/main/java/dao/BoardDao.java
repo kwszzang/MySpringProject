@@ -40,8 +40,8 @@ public class BoardDao {
 	}
 
 
-	public int WriteBoard(Board board) {
-		return this.abcd.insert(namespace+"WriteBoard",board);
+	public int WriteBoard(HashMap<String, Object> mapBoard) {
+		return this.abcd.insert(namespace+"WriteBoard",mapBoard);
 	}
 
 	public List<Board> SelectListByKeyword(Map<String,Object> map) {

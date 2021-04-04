@@ -9,8 +9,10 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Board;
@@ -76,53 +79,69 @@ public class BoardWriteController {
 	
 	@PostMapping(value = "writeboard.bo")
 	public ModelAndView doPost(
-			@ModelAttribute("board") @Valid Board board,
-			@RequestParam(value = "file_name") MultipartFile[] files,
-			@RequestParam(value = "brd_type")int brd_type,
+//			@ModelAttribute("board") @Valid Board board,
+			MultipartHttpServletRequest files,
+			HttpServletRequest request,
 			HttpSession session,
-			BindingResult error,
+//			BindingResult error,
 			HttpServletResponse response
-			
 			) throws IOException {
-		response.setContentType("text/html; charset=UTF-8");
+		//response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		
 		Member member = (Member)session.getAttribute("loginfo");
+		
+		
 		String mid = member.getMid();
+		int brd_type = Integer.parseInt(request.getParameter("brd_type")) ;
+		String brd_subject = request.getParameter("brd_subject");
+		String brd_content = request.getParameter("brd_content");
 		
 		
-		board.setMid(mid);
-		board.setBrd_type(brd_type);
+		
+//		board.setMid(mid);
+//		board.setBrd_type(brd_type);
 			
 			//에러가 있다고 안 뜸 현재 ...ㅠㅠ 
 			//유효성 검사하면 400 에러 
-			if(error.hasErrors()) {
-				out.write("<script>alert('유효성 검사 문제');history.go(-2);</script>");
-				out.flush();
-				out.close();
+			//if(error.hasErrors()) {
+//				out.write("<script>alert('유효성 검사 문제');history.go(-2);</script>");
+//				out.flush();
+//				out.close();
 				
 				
-			}else {
-				System.out.println("아이디 : "+board.getMid());
-				System.out.println("게시판 타입 : "+ board.getBrd_type());
-				System.out.println("게시판 제목 : "+ board.getBrd_subject());
-				System.out.println("게시판 내용 : "+ board.getBrd_content());
+		//	}else {
+//				System.out.println("아이디 : "+board.getMid());
+//				System.out.println("게시판 타입 : "+ board.getBrd_type());
+//				System.out.println("게시판 제목 : "+ board.getBrd_subject());
+//				System.out.println("게시판 내용 : "+ board.getBrd_content());
+				
+				HashMap<String, Object> mapBoard = new HashMap<String, Object>();
+				
+				mapBoard.put("mid", mid);
+				mapBoard.put("brd_type", brd_type);
+				mapBoard.put("brd_subject", brd_subject);
+				mapBoard.put("brd_content", brd_content);
+				
+				
 				int cnt = -9999;
-				cnt = this.bdao.WriteBoard(board);
+				cnt = this.bdao.WriteBoard(mapBoard);
 				
 				//방금 넣은 seq_brd 값 구하기
 				int seq_brd = this.bdao.SelectcurrVal();
 				
 				System.out.println("file 테이블에 insert 할 seq : "+seq_brd);
-				if (files != null && files.length > 0) {
+				
+				List<MultipartFile> fileList = files.getFiles("file_name");
+				if (files != null && fileList.size() > 0) {
 					String formattedDate = baseDir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
 					File f = new File(formattedDate);
 					if (!f.exists()) { 
 						f.mkdirs(); 
 					}
 
-					for (MultipartFile file : files) {
+					for (MultipartFile file : fileList) {
 						String type = file.getContentType();
 						String file1 = file.getOriginalFilename(); 
 						
@@ -162,9 +181,10 @@ public class BoardWriteController {
 					System.out.println("파일 첨부 안됨");
 
 				}
-				this.mav.setViewName("redirect:/boardlist.bo");
+				
 				this.mav.addObject("brd_type",brd_type);
-			}
+				this.mav.setViewName("redirect:/boardlist.bo");
+			//}
 			
 			
 			return this.mav;

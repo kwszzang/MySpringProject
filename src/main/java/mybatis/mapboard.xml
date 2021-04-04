@@ -26,7 +26,7 @@
 			from board b inner join member m on b.mid = m.mid where b.seq_brd = #{seq_brd}
 		</select>
 		
-		<insert id="WriteBoard" parameterType="MyBoard">
+		<insert id="WriteBoard" parameterType="HashMap">
 			insert into board values(seq_brd.nextval, #{mid}, #{brd_type}, #{brd_subject},
 			#{brd_content}, sysdate, 0)
 		</insert>
