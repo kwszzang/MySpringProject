@@ -1,6 +1,6 @@
 # MySpringProject
 
-1.개발 환경
+## 1.개발 환경
 
 ### Server OS : Windows10
 
