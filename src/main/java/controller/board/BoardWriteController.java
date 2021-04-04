@@ -87,7 +87,7 @@ public class BoardWriteController {
 			HttpServletResponse response
 			) throws IOException {
 		//response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		
 		
 		Member member = (Member)session.getAttribute("loginfo");
@@ -134,6 +134,12 @@ public class BoardWriteController {
 				System.out.println("file 테이블에 insert 할 seq : "+seq_brd);
 				
 				List<MultipartFile> fileList = files.getFiles("file_name");
+				for(MultipartFile file : fileList) {
+					System.out.println("오리지날 네임 : " +file.getOriginalFilename());
+					System.out.println("파일 네임 : " + file.getName());
+				}
+				
+				//파일 첨부 안했는데 왜 돌아가지 이게????
 				if (files != null && fileList.size() > 0) {
 					String formattedDate = baseDir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
 					File f = new File(formattedDate);
@@ -147,9 +153,13 @@ public class BoardWriteController {
 						
 						long imsi = file.getSize();
 						int size = Long.valueOf(imsi).intValue();
-
+						
 						String saveFileName = formattedDate + File.separator + file1; 
-
+						
+//						if(files == null && fileList.size()==0) {
+//							saveFileName = "";
+//						}	
+						
 						System.out.println("type :" + type);
 						System.out.println("originalFilename : " + file1);
 						System.out.println("size : " + size);
