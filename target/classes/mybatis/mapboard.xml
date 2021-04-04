@@ -47,6 +47,17 @@
 			select count(*) as cnt from board where brd_type = #{brd_type}
 		</select>
 		
+		<select id="SelectListSearchCnt" parameterType="Integer" resultType="Integer">
+			select count(*) as cnt from board where brd_type = #{brd_type} and
+			<if test="mode == 'mid'">
+				mid like #{keyword}
+			</if>
+			<if test="mode == 'brd_subject'">
+				brd_subject like #{keyword}
+			</if>
+			 order by brd_inputdate desc	
+		</select>
+		
 	</mapper>
 	
 	

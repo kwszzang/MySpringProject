@@ -151,7 +151,8 @@
    			</form>
    		</div>
    	</div>
-   	
+   	<input id = "keyword" type="hidden" value = "${keyword }">
+   	<input id = "mode" type="hidden" value = "${mode }">
    	<!-- 배경 회색 만들어줄 애  -->
    	<div id="backgound_black" style="width:100%; height:135%; z-index:10; background-color:#000; opacity: 0.5; margin-top: -59.4%; display: none; "></div>
    	
@@ -176,8 +177,10 @@
 	});
 	function fn_paging(curPage) {
 		var brd_type = parseInt($('#brd_type').val());
-		console.log(brd_type);
-		location.href = "boardlist.bo?curPage=" + curPage+"&brd_type="+brd_type;
+		var mode = parseInt($('#mode').val());
+		var keyword = $('#keyword').val();
+		
+		location.href = "search.bo?curPage=" + curPage+"&brd_type="+brd_type+"&keyword="+keyword+"&mode="+mode;
 		
 		}
 </script>

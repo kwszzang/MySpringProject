@@ -55,6 +55,10 @@ public class BoardDao {
 		return this.abcd.selectOne(namespace+"SelectListCnt",brd_type);
 	}
 
+	public int SelectListSearchCnt(Map<String, Object> map2) {
+		return this.abcd.selectOne(namespace+"SelectListSearchCnt",map2);
+	}
+
 
 
 }
