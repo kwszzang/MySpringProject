@@ -66,6 +66,8 @@ public class BoardDetailVIewController {
 		
 		this.mav.addObject("boardFile", boardFile);
 		
+		
+		
 		this.mav.setViewName("/board/boardDetail");
 		
 		return this.mav;

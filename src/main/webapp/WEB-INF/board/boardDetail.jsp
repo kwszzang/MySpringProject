@@ -25,6 +25,7 @@
 	<div>
 		<div style="float: right; width: 100%; height: auto;">
 			<div style="margin-left: 90%;">
+			
 				<c:if test="${whologin == 0}">
 					<a style="text-decoration: none;" href = "<%=contextPath%>/login.do">login</a>
 					<a href = "#" style="margin-left:10%;text-decoration: none;">menu</a>
@@ -49,6 +50,7 @@
 	</div>
 		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
 			<c:forEach var = "brd" items = "${boardlist }">
+			<input id = "brd_mid" type = "hidden" value = "${brd.mid }">
 				<div style="line-height: 0.5;">
 					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
 					<div>
@@ -66,9 +68,10 @@
 					<hr>
 				</div>
 				<div style = "text-align: left; height:auto; overflow: visible;">
-					<div style = "height: 60%; background-color: red;">
-					<br>
-						파일(이미지) 자리
+					<div style = "height: 60%; background-color: ;">
+					<c:forEach var = "img" items="${boardFile }">
+						<img src="<%=contextPath%>/upload/board/${img.file_name}" width="100%" height="100%">
+					</c:forEach>
 					</div>
 					<hr>
 					<div style = "">
@@ -101,11 +104,12 @@
 						<br>
 						</div>
 						<c:forEach var = "comt" items="${commentlists }">
+							
 							<div style="width: 100%; height: auto; overflow: visible;">
 								<!-- 새로운 댓글 쓰기 전용 div -->
 								<table style="table-layout:fixed; white-space: normal; ">
-									<tr>
-										<td style="border-left: 40px solid white;">${comt.mid }</td>
+									<tr class = "comt_tr">
+										<td style="border-left: 40px solid white;"><input class = "comt_mid" type = "hidden" value = "${comt.mid }">${comt.mid }</td>
 										<td style="border-left: 100px solid white;width: 35%;">${comt.comt_content }</td>
 										<td style="border-left: 480px solid white; font-size: 13px;width: 65%;">${comt.comt_inputdate }</td>
 									</tr>
@@ -120,8 +124,25 @@
 		
 </body>
 <script type="text/javascript">
-	function Write() {
+	$( document ).ready(function() {
+		var brd_mid = $('#brd_mid').val();
+		var comt_mid = $('.comt_mid').val();
+		var comt_tr = document.getElementsByClassName('comt_tr');
 		
+		
+		if(brd_mid == comt_mid){
+			for (var i = 0; i < comt_tr.length; i++) {
+				console.log(comt_mid+"  몇 번 찍히나 테스트");
+				$('.comt_tr').css('font-weight','900');
+			}
+			
+		}
+		
+		});
+
+
+	function Write() {
+		var brd_mid = $('#brd_mid').val();
 		var mid = $('#loginId').val();
 		var fakeseq_brd = $('#seq_Brd').val();
 		var comments = $('#comments').val();
@@ -151,15 +172,27 @@
 						
 						var result = '';
 						for(var i in data) {
-						result +=	"<table style='table-layout:fixed; white-space: normal; '>";
-						result +=	"<tr>"
-						result +=	"<td style='border-left: 40px solid white;'>"+data[i].mid+"</td>";
-						result +=	"<td style='border-left: 100px solid white;width: 35%;'>"+data[i].comt_content+"</td>";
-						result +=   "<td style='border-left: 480px solid white; font-size: 13px;width: 65%;'>"+data[i].comt_inputdate+"</td>";
-						result +=	"</tr>";
-						result +=   "</table>";
-						result +=   "<br>";
-							
+						if(brd_mid == mid){
+							result +=   "<br>"
+								result +=	"<table style='table-layout:fixed; white-space: normal; '>";
+								result +=	"<tr style= 'font-weight: 900;'>"
+								result +=	"<td style='border-left: 40px solid white;'>"+data[i].mid+"</td>";
+								result +=	"<td style='border-left: 100px solid white;width: 35%;'>"+data[i].comt_content+"</td>";
+								result +=   "<td style='border-left: 480px solid white; font-size: 13px;width: 65%;'>"+data[i].comt_inputdate+"</td>";
+								result +=	"</tr>";
+								result +=   "</table>";
+								result +=   "<br>";
+						}else{
+								result +=   "<br>"
+								result +=	"<table style='table-layout:fixed; white-space: normal; '>";
+								result +=	"<tr>"
+								result +=	"<td style='border-left: 40px solid white;'>"+data[i].mid+"</td>";
+								result +=	"<td style='border-left: 100px solid white;width: 35%;'>"+data[i].comt_content+"</td>";
+								result +=   "<td style='border-left: 480px solid white; font-size: 13px;width: 65%;'>"+data[i].comt_inputdate+"</td>";
+								result +=	"</tr>";
+								result +=   "</table>";
+								result +=   "<br>";
+						}
 							
 						}
 						

@@ -36,8 +36,8 @@ import dao.BoardDao;
 @Controller
 public class BoardWriteController {
 	
-	private String baseDir = "c:" + File.separator + "upload"+File.separator;
-	
+	//private String baseDir = "c:" + File.separator + "upload"+File.separator;
+	private String path;
 	@Autowired
 	@Qualifier("bdao")
 	BoardDao bdao;
@@ -81,7 +81,7 @@ public class BoardWriteController {
 	public ModelAndView doPost(
 //			@ModelAttribute("board") @Valid Board board,
 			//MultipartHttpServletRequest files,
-			@RequestParam(value = "file")MultipartFile[] files,
+			@RequestParam(value = "file") MultipartFile[] files,
 			HttpServletRequest request,
 			HttpSession session,
 //			BindingResult error,
@@ -126,8 +126,14 @@ public class BoardWriteController {
 				System.out.println("파일 투 스트링 / 해쉬 코드 나오곘지? "+files.toString());
 				//파일 첨부 안했는데 왜 돌아가지 이게????
 				if (files != null && files.length > 0) {
-					String formattedDate = baseDir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
-					File f = new File(formattedDate);
+					String Dir = "D:"+File.separator+"springpjt"+File.separator+"wonsik"+File.separator+"MySpringProject"
+							+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+
+							"WEB-INF"+File.separator+"upload"+File.separator+"board";
+					//String formattedDate = Dir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
+					
+//					path = request.getRealPath("upload/board/");
+//					System.out.println("getrealPath 경로 확인 : "+path);
+					File f = new File(Dir);
 					if (!f.exists()) { 
 						f.mkdirs(); 
 					}
@@ -139,7 +145,7 @@ public class BoardWriteController {
 						long imsi = file.getSize();
 						int size = Long.valueOf(imsi).intValue();
 						
-						String saveFileName = formattedDate + File.separator + file1; 
+						String saveFileName = Dir + File.separator + file1; 
 						
 						System.out.println("type :" + type);
 						System.out.println("originalFilename : " + file1);
