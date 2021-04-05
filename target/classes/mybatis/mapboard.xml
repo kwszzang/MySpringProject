@@ -70,6 +70,13 @@
 			select file_name from boardfile where seq_brd = #{seq_brd}
 		</select>
 		
+		
+	<!-- 	<select id="SelectHostComments" parameterType="HashMap" resultType="MyBoard">
+			select m.mid as mid, m.name as name,c.comt_content as comt_content, c.comt_inputdate as comt_inputdate
+			from (board b inner join comments c on b.seq_brd = c.seq_brd)
+			inner join member m on c.mid = m.mid
+			 where b.seq_brd = #{seq_brd} and b.mid = #{mid} order by c.seq_comt desc
+		</select> -->
 	</mapper>
 	
 	

@@ -126,14 +126,14 @@ public class BoardWriteController {
 				System.out.println("파일 투 스트링 / 해쉬 코드 나오곘지? "+files.toString());
 				//파일 첨부 안했는데 왜 돌아가지 이게????
 				if (files != null && files.length > 0) {
-					String Dir = "D:"+File.separator+"springpjt"+File.separator+"wonsik"+File.separator+"MySpringProject"
-							+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+
-							"WEB-INF"+File.separator+"upload"+File.separator+"board";
+//					String Dir = "D:"+File.separator+"springpjt"+File.separator+"wonsik"+File.separator+"MySpringProject"
+//							+File.separator+"src"+File.separator+"main"+File.separator+"webapp"+File.separator+
+//							"WEB-INF"+File.separator+"upload"+File.separator+"board";
 					//String formattedDate = Dir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
 					
-//					path = request.getRealPath("upload/board/");
+					path = request.getRealPath("upload/board/");
 //					System.out.println("getrealPath 경로 확인 : "+path);
-					File f = new File(Dir);
+					File f = new File(path);
 					if (!f.exists()) { 
 						f.mkdirs(); 
 					}
@@ -145,7 +145,7 @@ public class BoardWriteController {
 						long imsi = file.getSize();
 						int size = Long.valueOf(imsi).intValue();
 						
-						String saveFileName = Dir + File.separator + file1; 
+						String saveFileName = path + File.separator + file1; 
 						
 						System.out.println("type :" + type);
 						System.out.println("originalFilename : " + file1);

@@ -71,6 +71,13 @@ public class BoardDao {
 		return this.abcd.selectList(namespace+"SelectFileList",seq_brd);
 	}
 
+//	public List<Board> SelectHostComments(int seq_brd, String mid) {
+//		HashMap<String, Object>map = new HashMap<String, Object>();
+//		map.put("mid", map);
+//		map.put("seq_brd", seq_brd);
+//		return this.abcd.selectList(namespace+"SelectHostComments",map);
+//	}
+
 
 
 }

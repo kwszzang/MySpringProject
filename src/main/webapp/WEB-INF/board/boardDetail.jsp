@@ -117,6 +117,9 @@
 							</div>
 							<br>
 						</c:forEach>
+						<%-- <c:forEach var = "host" items="hostcommentlists">
+							${host.comt_content }<br>
+						</c:forEach> --%>
 					</div>
 				</div>
 			</c:forEach>
@@ -139,6 +142,9 @@
 		}
 		
 		});
+
+
+		
 
 
 	function Write() {
