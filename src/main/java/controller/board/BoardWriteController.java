@@ -63,9 +63,9 @@ public class BoardWriteController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		
+		String kakaomember = (String) session.getAttribute("kakaoname");
 		Member member = (Member)session.getAttribute("loginfo");
-		if(member == null){
+		if(member == null && kakaomember == null){
 			out.println("<script>alert('로그인 먼저 해주세요.');location.href = 'login.do';</script>");
 			out.flush();
 			out.close();
@@ -80,7 +80,8 @@ public class BoardWriteController {
 	@PostMapping(value = "writeboard.bo")
 	public ModelAndView doPost(
 //			@ModelAttribute("board") @Valid Board board,
-			MultipartHttpServletRequest files,
+			//MultipartHttpServletRequest files,
+			@RequestParam(value = "file")MultipartFile[] files,
 			HttpServletRequest request,
 			HttpSession session,
 //			BindingResult error,
@@ -91,32 +92,20 @@ public class BoardWriteController {
 		
 		
 		Member member = (Member)session.getAttribute("loginfo");
+		String mid = "";
+		if(member == null) {
+			String kakaomember = (String) session.getAttribute("kakaoname");
+			mid = kakaomember;
+		}else {
+			mid = member.getMid();
+		}
 		
 		
-		String mid = member.getMid();
+		
 		int brd_type = Integer.parseInt(request.getParameter("brd_type")) ;
 		String brd_subject = request.getParameter("brd_subject");
 		String brd_content = request.getParameter("brd_content");
 		
-		
-		
-//		board.setMid(mid);
-//		board.setBrd_type(brd_type);
-			
-			//에러가 있다고 안 뜸 현재 ...ㅠㅠ 
-			//유효성 검사하면 400 에러 
-			//if(error.hasErrors()) {
-//				out.write("<script>alert('유효성 검사 문제');history.go(-2);</script>");
-//				out.flush();
-//				out.close();
-				
-				
-		//	}else {
-//				System.out.println("아이디 : "+board.getMid());
-//				System.out.println("게시판 타입 : "+ board.getBrd_type());
-//				System.out.println("게시판 제목 : "+ board.getBrd_subject());
-//				System.out.println("게시판 내용 : "+ board.getBrd_content());
-				
 				HashMap<String, Object> mapBoard = new HashMap<String, Object>();
 				
 				mapBoard.put("mid", mid);
@@ -133,21 +122,17 @@ public class BoardWriteController {
 				
 				System.out.println("file 테이블에 insert 할 seq : "+seq_brd);
 				
-				List<MultipartFile> fileList = files.getFiles("file_name");
-				for(MultipartFile file : fileList) {
-					System.out.println("오리지날 네임 : " +file.getOriginalFilename());
-					System.out.println("파일 네임 : " + file.getName());
-				}
-				
+				System.out.println("파일 길이 : "+files.length);
+				System.out.println("파일 투 스트링 / 해쉬 코드 나오곘지? "+files.toString());
 				//파일 첨부 안했는데 왜 돌아가지 이게????
-				if (files != null && fileList.size() > 0) {
+				if (files != null && files.length > 0) {
 					String formattedDate = baseDir+ new SimpleDateFormat("yyyy" + File.separator + "MM"+File.separator+"dd" ).format(new Date());
 					File f = new File(formattedDate);
 					if (!f.exists()) { 
 						f.mkdirs(); 
 					}
 
-					for (MultipartFile file : fileList) {
+					for (MultipartFile file : files) {
 						String type = file.getContentType();
 						String file1 = file.getOriginalFilename(); 
 						
@@ -155,10 +140,6 @@ public class BoardWriteController {
 						int size = Long.valueOf(imsi).intValue();
 						
 						String saveFileName = formattedDate + File.separator + file1; 
-						
-//						if(files == null && fileList.size()==0) {
-//							saveFileName = "";
-//						}	
 						
 						System.out.println("type :" + type);
 						System.out.println("originalFilename : " + file1);
@@ -173,19 +154,19 @@ public class BoardWriteController {
 						
 						cnt = this.bdao.insertFile(fileMap);	
 						
-						
-						try (InputStream in = file.getInputStream();
-							FileOutputStream fos = new FileOutputStream(saveFileName)) {
-							int readCount = 0;
-							byte[] buffer = new byte[512];
-							while ((readCount = in.read(buffer)) != -1) {
-								
-								fos.write(buffer, 0, readCount);
+						//여기서 오류 발생
+							try (InputStream in = file.getInputStream();
+								FileOutputStream fos = new FileOutputStream(saveFileName)) {
+								int readCount = 0;
+								byte[] buffer = new byte[512];
+								while ((readCount = in.read(buffer)) != -1) {
+									
+									fos.write(buffer, 0, readCount);
+								}
+		
+							} catch (Exception ex) {
+								ex.printStackTrace();
 							}
-
-						} catch (Exception ex) {
-							ex.printStackTrace();
-						}
 					}
 				} else {
 					System.out.println("파일 첨부 안됨");

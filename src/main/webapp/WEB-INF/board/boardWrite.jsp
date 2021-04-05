@@ -50,16 +50,13 @@
 			<h1 style="font-size: 35px;letter-spacing: 0.2px;line-height: 1.5;color: black;">MySpringProject</h1>
 		</a>
 	</div>
-	<c:set var="apppath" value="<%=contextPath%>"/>
 	
-	<form:form modelAttribute="board" action="${apppath }/writeboard.bo" method="POST" enctype="multipart/form-data">
+	<form  action="<%=contextPath %>/writeboard.bo" method="POST" enctype="multipart/form-data">
 		
 		<div style="margin-left: 26%;margin-top: 5%;">
-			<form:input path = "brd_subject" type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
-			<form:errors path = "brd_subject" cssClass="err"/><br>
-			<input type = "file" name = "file_name"/><br>
-			<form:textarea path = "brd_content" rows="40" cols="130" name = "brd_content"/>
-			<form:errors path = "brd_content" cssClass="err"/><br>
+			<input  type = "text" name = "brd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요"/><br>
+			<input type = "file" name = "file" multiple="multiple"/><br>
+			<textarea  rows="40" cols="130" name = "brd_content"></textarea>
 		</div>
 		<div style="margin-left: 66.5%;margin-top: 1%;">
 			<button id = "cancel_btn" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
@@ -67,7 +64,7 @@
 		</div>
 		
 		<input id = "brd_type" type = "hidden" value = "${brd_type }" name = "brd_type"> 
-	</form:form>
+	</form>
 </body>
 <script type="text/javascript">
 

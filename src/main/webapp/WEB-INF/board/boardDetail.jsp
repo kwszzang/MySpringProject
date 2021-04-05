@@ -133,6 +133,7 @@
 		console.log(comments);
 		if(mid == ""){
 			alert('로그인부터 해주세요.');
+			location.href='login.do';
 		}else{
 	 		 $.ajax({
 		            async: true,
