@@ -51,6 +51,7 @@
 		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
 			<c:forEach var = "brd" items = "${boardlist }">
 			<input id = "brd_mid" type = "hidden" value = "${brd.mid }">
+			<input id = "brd_type" type = "text" value = "${brd.brd_type }">
 				<div style="line-height: 0.5;">
 					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
 					<div>
@@ -84,8 +85,15 @@
 						<p><a href = "#">${file.file_name }</a></p>
 					</c:forEach>
 					<hr>
+					<div style="height: 10%;margin-left: 85%;">
+						<button id = "boardModify" style="width: 80px;height: 30px; cursor: pointer;">수정</button>
+						<button id = "boardDelete" style="width: 80px;height: 30px; cursor: pointer;">삭제</button>
 					</div>
-					<div style = "height: 30%;margin-left: 9%;">
+					<div style="margin-top: 3.5%;">
+						<hr>
+					</div>
+					</div>
+					<div style = "height: 30%;margin-left: 9%;margin-top: 5%;">
 						댓글 입력<br>
 						<input id = "seq_Brd" type = "hidden" value = "${brd.seq_brd }">
 						<input id = "loginId" type = "hidden" value= "${loginfo.mid }">
@@ -127,6 +135,23 @@
 		
 </body>
 <script type="text/javascript">
+	$('#boardDelete').click(function() {
+		var seq_brd = parseInt($('#seq_Brd').val());
+		var brd_type = parseInt($('#brd_type').val());
+		
+		console.log(brd_type);
+		
+		console.log(seq_brd);
+		console.log(typeof(seq_brd));
+		if(confirm('게시글을 정말 삭제 하시겠습니까?')){
+			location.href = 'boardDelete.bo?seq_brd='+seq_brd+'&brd_type='+brd_type;	
+		}
+		
+		
+	});
+
+
+
 	$( document ).ready(function() {
 		var brd_mid = $('#brd_mid').val();
 		var comt_mid = $('.comt_mid').val();
@@ -142,10 +167,6 @@
 		}
 		
 		});
-
-
-		
-
 
 	function Write() {
 		var brd_mid = $('#brd_mid').val();
