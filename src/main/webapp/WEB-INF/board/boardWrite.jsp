@@ -59,7 +59,7 @@
 			<textarea  rows="40" cols="130" name = "brd_content"></textarea>
 		</div>
 		<div style="margin-left: 66.5%;margin-top: 1%;">
-			<button id = "cancel_btn" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
+			<button id = "cancel_btn" type = "button" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
 			<input  type = "submit" value = "글쓰기" style="width: 80px;height: 40px;">
 		</div>
 		
