@@ -75,6 +75,10 @@ public class BoardDao {
 		return this.abcd.delete(namespace+"DeleteBoard",seq_brd);
 	}
 
+	public int ModifyBoard(HashMap<String, Object> modifyMap) {
+		return this.abcd.update(namespace+"ModifyBoard",modifyMap);
+	}
+
 //	public List<Board> SelectHostComments(int seq_brd, String mid) {
 //		HashMap<String, Object>map = new HashMap<String, Object>();
 //		map.put("mid", map);

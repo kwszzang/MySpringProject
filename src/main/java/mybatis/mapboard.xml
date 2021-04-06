@@ -74,6 +74,10 @@
 			delete from board where seq_brd = #{seq_brd}
 		</delete>
 		
+		<update id="ModifyBoard" parameterType="HashMap">
+			update board set brd_subject = #{brd_subject}, brd_content = #{brd_content} where seq_brd = #{seq_brd}
+		</update>
+		
 		
 	<!-- 	<select id="SelectHostComments" parameterType="HashMap" resultType="MyBoard">
 			select m.mid as mid, m.name as name,c.comt_content as comt_content, c.comt_inputdate as comt_inputdate

@@ -51,7 +51,6 @@
 		<div style="width: 60%;margin-left: 24%;margin-top: 5%; ">
 			<c:forEach var = "brd" items = "${boardlist }">
 			<input id = "brd_mid" type = "hidden" value = "${brd.mid }">
-			<input id = "brd_type" type = "text" value = "${brd.brd_type }">
 				<div style="line-height: 0.5;">
 					<p style="font-weight: bold;color: #0b1b58;">${brd.brd_subject }</p>	
 					<div>
@@ -95,7 +94,7 @@
 					</div>
 					<div style = "height: 30%;margin-left: 9%;margin-top: 5%;">
 						댓글 입력<br>
-						<input id = "seq_Brd" type = "hidden" value = "${brd.seq_brd }">
+						
 						<input id = "loginId" type = "hidden" value= "${loginfo.mid }">
 						<textarea id="comments" rows="12" cols="130"></textarea>
 							<div>
@@ -130,11 +129,43 @@
 						</c:forEach> --%>
 					</div>
 				</div>
+				<!-- 수정하기 누르면 나올 창  -->
+				<div id = "modify_div" style="margin-left: 5%;margin-top: -119%; display: none;">
+					<form action="<%=contextPath%>/boardmodify.bo" method="post">
+						<input id = "brd_type" type = "hidden" value = "${brd.brd_type }" name = "brd_type">
+						<input id = "seq_Brd" type = "hidden" value = "${brd.seq_brd }" name = "seq_brd">
+						<div >
+							<input  type = "text" name = "Nbrd_subject" style = "width: 30%; height: 4%;" placeholder = "제목을 입력해주세요" value = "${brd.brd_subject }"/><br>
+							<textarea  rows="40" cols="130" name = "Nbrd_content">${brd.brd_content }</textarea>
+						</div>
+						<div style="margin-left: 33%;margin-top: 1%;">
+							<button id = "cancel_btn" style="cursor: pointer;width: 80px;height: 40px;">취소</button>
+							
+							<input  type = "submit" value = "수정하기" style="width: 80px;height: 40px; cursor: poitner;">
+						</div>
+					</form>
+				</div>		
 			</c:forEach>
 		</div>
+			<!-- 배경 회색 만들어줄 애  -->
+  		<!-- <div id="backgound_black" style="width:100%; height:241%; z-index:10; background-color:#000; opacity: 0.5; margin-top: -95%; display: none;  "></div> -->
 		
 </body>
 <script type="text/javascript">
+	$('#cancel_btn').click(function() {
+		//$('#backgound_black').hide();
+		$('#modify_div').hide();
+	});
+
+
+	$('#boardModify').click(function() {
+		//$('#backgound_black').show();
+		$('#modify_div').show();
+	});
+
+
+
+
 	$('#boardDelete').click(function() {
 		var seq_brd = parseInt($('#seq_Brd').val());
 		var brd_type = parseInt($('#brd_type').val());
