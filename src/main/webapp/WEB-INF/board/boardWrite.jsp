@@ -68,11 +68,10 @@
 </body>
 <script type="text/javascript">
 
-	//되다가 갑자기 안됨 400에러
 	$('#cancel_btn').click(function() {
 		if(confirm('작성을 취소하고 이전 페이지로 이동하겠습니까?')){
 			console.log('오류 왜 나요 갑자기');
-			history.back();
+			history.go(-1);
 		}else{
 			console.log('왜 오류뜨지;');
 		}
