@@ -189,13 +189,15 @@
 		var comt_tr = document.getElementsByClassName('comt_tr');
 		
 		
-		if(brd_mid == comt_mid){
 			for (var i = 0; i < comt_tr.length; i++) {
 				console.log(comt_mid+"  몇 번 찍히나 테스트");
-				$('.comt_tr').css('font-weight','900');
+				if(brd_mid == comt_mid){
+					$('.comt_tr').css('font-weight','900');
+					
+				}
+				
 			}
 			
-		}
 		
 		});
 

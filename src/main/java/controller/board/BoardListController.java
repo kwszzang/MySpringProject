@@ -66,6 +66,51 @@ public class BoardListController {
 		
 		this.mav.addObject("pagination", paging);
 		
+		String intStr = "1,2,5,9,X,3,7";
+		
+		System.out.println(intStr);
+		StringBuffer sb = new StringBuffer(intStr);
+		sb.delete(8, 10);
+		System.out.println(sb);
+		
+		System.out.println("===================");
+		
+		String newStr = sb.toString();
+		
+		System.out.println(newStr);
+		
+		System.out.println("===============");
+		
+		String [] a = newStr.split(",");
+		List<Object> aList = new ArrayList<Object>();
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i]+" ");
+			aList.add(Integer.parseInt(a[i]) );
+		}
+		System.out.println();
+		aList.sort(null);
+		System.out.println(aList);
+		StringBuffer sb1 = new StringBuffer();
+		for (int i = 0; i < aList.size(); i++) {
+			
+			if(i == aList.size() - 1 ) {
+				sb1.append(String.valueOf(aList.get(i)) );
+			}else {
+				sb1.append(String.valueOf(aList.get(i))+", ");
+			}
+		}
+		System.out.println(sb1.toString());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		//작성한 글 출력 정보
 		
 		int startIndex = paging.getStartIndex();
