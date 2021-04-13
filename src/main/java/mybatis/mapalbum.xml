@@ -7,8 +7,8 @@
 			select * from album where alm_type = #{alm_type}			
 		</select>
 		
-		<select id="Album" resultType="MyAlbum" parameterType="HashMap">
-			select * from album where alm_type = #{alm_type} and alm_name like #{keyword}
+		<select id="SelectAlbumListByKeyword" resultType="MyAlbum" parameterType="HashMap">
+			select * from album where alm_type = #{alm_type} and alm_name like upper(#{keyword})
 		</select>
 	</mapper>
 	
