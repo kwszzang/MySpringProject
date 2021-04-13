@@ -94,7 +94,13 @@
 		<div id="album_menu" style="position: absolute;top: 38.9%;left: 46.5%;z-index: 100;width: 240px;background-color: grey;height: 200px;border-radius: 0px 0px 5px 5px;display: none; ">
 			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
 				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
-					<a href = "#">앨범 메뉴</a><br>
+					<a href = "<%=contextPath%>/albumList.al?alm_type=1">국내 앨범</a><br>
+				</div>
+			</div>
+			
+			<div style="height:33px; border-bottom: 1px solid #dadada; width: 85%; margin: auto; cursor:pointer;"> 
+				<div style="float:left;margin-top: 5px;margin-left: 5px;color: #06c;font-size: 0.9em;">
+					<a href = "<%=contextPath%>/albumList.al?alm_type=2">해외 앨범</a><br>
 				</div>
 			</div>
 		</div>

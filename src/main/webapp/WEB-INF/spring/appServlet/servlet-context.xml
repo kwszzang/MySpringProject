@@ -20,6 +20,7 @@
 	<context:component-scan base-package="controller.email" />
 	<context:component-scan base-package="controller.board" />
 	<context:component-scan base-package="controller.comments" />
+	<context:component-scan base-package="controller.album" />
 	
 	<context:component-scan base-package="dao" />
 
