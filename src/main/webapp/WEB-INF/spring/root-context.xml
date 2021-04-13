@@ -14,7 +14,7 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe" />
+			value="jdbc:oracle:thin:@220.121.20.94:1521:xe" />
 		<property name="username" value="myspring" />
 		<property name="password" value="oracle" />
 	</bean>

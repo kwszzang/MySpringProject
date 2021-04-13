@@ -66,7 +66,6 @@ public class BoardListController {
 		
 		this.mav.addObject("pagination", paging);
 		
-		
 		//작성한 글 출력 정보
 		
 		int startIndex = paging.getStartIndex();
