@@ -88,9 +88,13 @@
 	            contentType: "application/json; charset=UTF-8",
 	            success : function(data) {
 					alert('성공');
-					var result = '성공';
+					var result = '';
 					for(var i in data){
+						result += data[i].alm_name;
 						console.log(data[i].alm_name);
+					}
+					if(data.length == 0){
+						result += '검색 결과가 없습니다.';
 					}
 					
 					$('#result').html(result);
