@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class AlbumDao {
 
 	public List<Album> SelectAlbumListByType(int alm_type) {
 		return this.abcd.selectList(namespace+"SelectAlbumListByType",alm_type);
+	}
+
+	public List<Album> SelectAlbumListByKeyword(Map<String,Object> albumMap) {
+		return this.abcd.selectList(namespace+"SelectAlbumListByKeyword",albumMap);
 	}
 
 	

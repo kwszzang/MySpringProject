@@ -6,6 +6,10 @@
 		<select id="SelectAlbumListByType" resultType="MyAlbum" parameterType="Integer">
 			select * from album where alm_type = #{alm_type}			
 		</select>
+		
+		<select id="Album" resultType="MyAlbum" parameterType="HashMap">
+			select * from album where alm_type = #{alm_type} and alm_name like #{keyword}
+		</select>
 	</mapper>
 	
 	

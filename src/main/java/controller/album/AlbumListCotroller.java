@@ -32,6 +32,7 @@ public class AlbumListCotroller {
 		List<Album> albumList =  this.adao.SelectAlbumListByType(alm_type);
 		
 		this.mav.addObject("albumList",albumList);
+		this.mav.addObject("alm_type",alm_type);
 		this.mav.setViewName("album/albumList");
 		return this.mav;
 	}
