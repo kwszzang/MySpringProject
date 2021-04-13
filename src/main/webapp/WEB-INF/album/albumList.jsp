@@ -52,7 +52,7 @@
 	<input type = "hidden" value = "${alm_type }" id = "alm_type">
 	
 	<div>
-		<div style="margin-left: 41%;">
+		<div style="margin-left: 41.5%;margin-top: 6%;">
 			<div style="font-size: 24px; font-weight: bold;">
 				<span>원하는 앨범명을 검색해보세요</span>
 			</div>
@@ -71,7 +71,7 @@
 
 </body>
 <script type="text/javascript">
-	$('#search_btn').click(function() {
+	$('#search').keyup(function() {
 		
 		var keyword = $('#search').val();
 		var alm_type = $('#alm_type').val();
@@ -88,11 +88,13 @@
 	            dataType : "json",
 	            contentType: "application/json; charset=UTF-8",
 	            success : function(data) {
-					alert('성공');
 					var result = '';
 					for(var i in data){
-						result += data[i].alm_name;
+						result += data[i].alm_name + '<br>';
 						console.log(data[i].alm_name);
+						if(keyword == ''){
+							$('#result').html('');
+						}
 					}
 					if(data.length == 0){
 						result += '검색 결과가 없습니다.';

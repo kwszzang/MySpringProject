@@ -35,7 +35,6 @@ public class AlbumImsiController {
 		
 		
 		System.out.println("키워드 입니다 : "+ keyword);
-		System.out.println("타입입니다 : "+ alm_type);
 		
 		
 		Map<String, Object>albumMap = new HashMap<String, Object>();
