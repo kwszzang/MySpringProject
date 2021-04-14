@@ -170,7 +170,7 @@ function slidedown(value) {
 }
 
 
-$('#ajaxtest').click(function() {
+/* $('#ajaxtest').click(function() {
 	$.ajax({
 		url : "test.bo",
 		success : function(data){
@@ -183,6 +183,6 @@ $('#ajaxtest').click(function() {
 			alert(error);
 		}
 	}); 
-});
+}); */
 </script>
 </html>

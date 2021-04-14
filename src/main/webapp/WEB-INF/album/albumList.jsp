@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="./../common/common.jsp" %>
@@ -64,7 +63,7 @@
 			</div>
 			<br><br>
 			<div id = "result">
-				값이 나올 곳 
+				
 			</div>
 		</div>	
 	</div>
@@ -89,15 +88,17 @@
 	            contentType: "application/json; charset=UTF-8",
 	            success : function(data) {
 					var result = '';
-					for(var i in data){
-						result += data[i].alm_name + '<br>';
-						console.log(data[i].alm_name);
-						if(keyword == ''){
-							$('#result').html('');
-						}
-					}
-					if(data.length == 0){
+					
+					if(!keyword){
+						console.log('검색창이 비였음');
+						$('#result').html('뭐라도 한 번 검색해봐요');
+					}else if (data.length == 0){
 						result += '검색 결과가 없습니다.';
+					}else{
+						for(var i in data){
+							result += data[i].alm_name + '<br>';
+							
+						}
 					}
 					
 					$('#result').html(result);
@@ -107,5 +108,9 @@
 	                alert("error : " + error);
 	            }
        		 }); 
+		
+			
+		
+		console.log(keyword);
 	});
 </script>
