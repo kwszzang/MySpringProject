@@ -23,6 +23,10 @@ public class AlbumDao {
 		return this.abcd.selectList(namespace+"SelectAlbumListByKeyword",albumMap);
 	}
 
+	public List<Album> SelectAlbumListBySeq(int seq_alm) {
+		return this.abcd.selectList(namespace+"SelectAlbumListBySeq",seq_alm);
+	}
+
 	
 	
 }

@@ -9,6 +9,7 @@
 		<typeAlias alias = "MyBoard" type="bean.Board"/>
 		<typeAlias alias = "MyComments" type="bean.Comments"/>
 		<typeAlias alias = "MyAlbum" type="bean.Album"/>
+		<typeAlias alias = "MySong" type="bean.Song"/>
   	</typeAliases>
   	
   	

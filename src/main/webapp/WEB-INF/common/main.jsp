@@ -123,7 +123,6 @@
 			</div>
 		</div>
 		
-		
 		<div class="swiper-container" style="float:left; width:100%; height:892px; background-color: white; margin-top: 5%; margin-left: 12%;">
 			<div class="swiper-wrapper">
 				<div class="swiper-slide" style="width:100%; height:892px;">

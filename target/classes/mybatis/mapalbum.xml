@@ -10,5 +10,11 @@
 		<select id="SelectAlbumListByKeyword" resultType="MyAlbum" parameterType="HashMap">
 			select * from album where alm_type = #{alm_type} and upper(alm_name) like upper(#{keyword})
 		</select>
+		
+		<select id="SelectAlbumListBySeq" resultType="MyAlbum" parameterType="Integer">
+			select alm_name,alm_image,to_char(alm_releasedate,'yyyy-mm-dd') as alm_releasedate,
+			alm_songwriter, alm_gerne
+			 from album where seq_alm = #{seq_alm}
+		</select>
 	</mapper>
 	

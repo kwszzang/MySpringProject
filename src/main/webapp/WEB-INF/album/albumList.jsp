@@ -58,11 +58,8 @@
 			<div style=" margin-top: 6%;">
 				<input id = "search" type = "text" name = "search" style="width: 300px;height: 40px;border-radius: 10px; outline: none;"><br><br><br>
 			</div>
-			<div style="margin-left: 7.5%;">
-				<button id = "search_btn" style="cursor: pointer; width: 120px; height: 50px;">눌르셈</button>
-			</div>
 			<br><br>
-			<div id = "result">
+			<div id = "result" style="width: 320px;background-color: #fbfbfb;padding-left: 11%;margin-left: -7%;height: auto;line-height: 30px;">
 				
 			</div>
 		</div>	
@@ -91,13 +88,16 @@
 					
 					if(!keyword){
 						console.log('검색창이 비였음');
-						$('#result').html('뭐라도 한 번 검색해봐요');
 					}else if (data.length == 0){
 						result += '검색 결과가 없습니다.';
 					}else{
 						for(var i in data){
-							result += data[i].alm_name + '<br>';
-							
+							result += "<a href =";
+							result += "<%=contextPath%>/albumdetail.al?seq_alm=";
+							result += data[i].seq_alm+">";
+							result += data[i].alm_name;
+							result += "</a><br>";
+							console.log(result);
 						}
 					}
 					

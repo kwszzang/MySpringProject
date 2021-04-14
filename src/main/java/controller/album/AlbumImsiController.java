@@ -7,10 +7,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import bean.Album;
 import dao.AlbumDao;
@@ -18,13 +21,15 @@ import dao.AlbumDao;
 @Controller
 @RequestMapping( produces = "application/json; charset=utf8")
 public class AlbumImsiController {
-
+	private ModelAndView mav = null;
 	
 	@Autowired
 	@Qualifier("adao")
 	private AlbumDao adao ;
 	
-	public AlbumImsiController() {}
+	public AlbumImsiController() {
+		this.mav = new ModelAndView();
+	}
 	
 	@PostMapping(value = "searchalbum.al")
 	public @ResponseBody List<Album>  doPost(
@@ -45,5 +50,17 @@ public class AlbumImsiController {
 		List<Album>list = this.adao.SelectAlbumListByKeyword(albumMap);
 		
 		return list;
+	}
+	
+	@GetMapping(value = "albumdetail.al")
+	public ModelAndView doGet(
+			@RequestParam(value = "seq_alm")String fakeseq) {
+		
+		int seq_alm = Integer.parseInt(fakeseq);
+		List<Album> list = this.adao.SelectAlbumListBySeq(seq_alm);
+		
+		this.mav.addObject("album",list);
+		this.mav.setViewName("album/albumDetail");
+		return this.mav;
 	}
 }
