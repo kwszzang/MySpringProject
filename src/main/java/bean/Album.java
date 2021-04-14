@@ -10,7 +10,17 @@ public class Album {
 	private String alm_gerne;
 	private int alm_type;
 	
+	private Song song;
 	
+	
+	
+	
+	public Song getSong() {
+		return song;
+	}
+	public void setSong(Song song) {
+		this.song = song;
+	}
 	public int getSeq_alm() {
 		return seq_alm;
 	}

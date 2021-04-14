@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Album;
+import bean.Song;
 import dao.AlbumDao;
 
 @Controller
@@ -59,7 +60,10 @@ public class AlbumImsiController {
 		int seq_alm = Integer.parseInt(fakeseq);
 		List<Album> list = this.adao.SelectAlbumListBySeq(seq_alm);
 		
+		List<Song> songlist = this.adao.SelectSongListBySeq(seq_alm);
+		
 		this.mav.addObject("album",list);
+		this.mav.addObject("songlist",songlist);
 		this.mav.setViewName("album/albumDetail");
 		return this.mav;
 	}

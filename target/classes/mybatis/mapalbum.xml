@@ -16,5 +16,9 @@
 			alm_songwriter, alm_gerne
 			 from album where seq_alm = #{seq_alm}
 		</select>
+		
+		<select id="SelectSongListBySeq" resultType="MySong" parameterType="Integer">
+			select * from song where seq_alm = #{seq_alm}
+		</select>
 	</mapper>
 	
