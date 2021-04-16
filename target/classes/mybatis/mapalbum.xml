@@ -20,5 +20,9 @@
 		<select id="SelectSongListBySeq" resultType="MySong" parameterType="Integer">
 			select * from song where seq_alm = #{seq_alm}
 		</select>
+		
+		<select id="SelectDesListBySeq" resultType="MyAlde" parameterType="Integer">
+			select * from album_description where seq_alm = #{seq_alm}
+		</select>
 	</mapper>
 	

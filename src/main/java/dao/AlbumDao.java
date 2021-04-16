@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bean.Album;
+import bean.Album_Description;
 import bean.Song;
 @Component("adao")
 public class AlbumDao {
@@ -30,6 +31,10 @@ public class AlbumDao {
 
 	public List<Song> SelectSongListBySeq(int seq_alm) {
 		return this.abcd.selectList(namespace+"SelectSongListBySeq",seq_alm);
+	}
+
+	public List<Album_Description> SelectDesListBySeq(int seq_alm) {
+		return this.abcd.selectList(namespace+"SelectDesListBySeq",seq_alm);
 	}
 
 	

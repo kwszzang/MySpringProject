@@ -72,6 +72,16 @@
 				<!-- 재생 시간 : ${song.song_mit } 분 ${song.song_sec } 초 -->
 			</div>
 		</div>
+		<div>
+			<hr>
+			<div>
+				<c:forEach var = "desc" items = "${desList }">
+						<p>${desc.alde_content1 }</p>
+						<p>${desc.alde_content2 }</p>
+						<p>${desc.alde_content3 }</p>				
+				</c:forEach>
+			</div>
+		</div>
 		
 		
 		
