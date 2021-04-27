@@ -64,18 +64,6 @@ public class AlbumImsiController {
 		List<Song> songlist = this.adao.SelectSongListBySeq(seq_alm);
 		
 		List<Album_Description> desList = this.adao.SelectDesListBySeq(seq_alm);
-		if(desList.isEmpty()) {
-			System.out.println("비였네용 ㅋㅋ");
-		}else {
-			System.out.println("안비였네용 ㅋㅋ");
-		}
-		System.out.println("============================");
-		System.out.println("앨범 시퀀스 확인 : "+ seq_alm);
-		
-		for (int i = 0; i < desList.size(); i++) {
-			System.out.println(desList.get(i).getAlde_content1());
-			System.out.println(desList.get(i).getAlde_content2());
-		}
 		
 		this.mav.addObject("desList",desList);
 		this.mav.addObject("album",list);

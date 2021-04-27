@@ -57,7 +57,7 @@
 		<div style="margin-left: 16%;">
 			<div style="float: left;width: 30%;">
 				<!--  300 x 299 이미지 규격  -->
-				<img  src="<%=contextPath %>/resources/img/album/${album.alm_image}" width="300" height="299"> 
+				<img  src="<%=contextPath %>/resources/img/album/${album.alm_image}" width="300" height="299" > 
 			</div>
 			<div style="float: left;width: 70%;">
 				<p>가수 : ${album.alm_songwriter }</p>
@@ -72,7 +72,7 @@
 				<!-- 재생 시간 : ${song.song_mit } 분 ${song.song_sec } 초 -->
 			</div>
 		</div>
-		<div>
+		<div style="margin-top: 30%;width: 70%;margin-left: 16%;">
 			<hr>
 			<div>
 				<c:forEach var = "desc" items = "${desList }">

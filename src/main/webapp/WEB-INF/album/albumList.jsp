@@ -95,6 +95,10 @@
 							result += "<a href =";
 							result += "<%=contextPath%>/albumdetail.al?seq_alm=";
 							result += data[i].seq_alm+">";
+							result += "<img src=";
+							result += "<%=contextPath %>/resources/img/album/";
+							result += data[i].alm_image+" width='25' height='25'>"; 
+							console.log(result);
 							result += data[i].alm_name;
 							result += "</a><br>";
 							console.log(result);
