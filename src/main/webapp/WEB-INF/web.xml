@@ -111,6 +111,21 @@
 		<url-pattern>*.al</url-pattern>
 	</servlet-mapping>	
 	
+	<!--  song section -->
+	 <servlet>
+		<servlet-name>song</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>		
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>song</servlet-name>
+		<url-pattern>*.so</url-pattern>
+	</servlet-mapping>	
+	
 	
 
 </web-app>

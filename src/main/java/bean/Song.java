@@ -6,7 +6,16 @@ public class Song {
 	private String song_name;
 	private int song_mit;
 	private int song_sec;
+	private Song_Description sode;
 	
+	
+	
+	public Song_Description getSode() {
+		return sode;
+	}
+	public void setSode(Song_Description sode) {
+		this.sode = sode;
+	}
 	public int getSeq_song() {
 		return seq_song;
 	}

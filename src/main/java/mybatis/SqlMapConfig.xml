@@ -11,6 +11,7 @@
 		<typeAlias alias = "MyAlbum" type="bean.Album"/>
 		<typeAlias alias = "MySong" type="bean.Song"/>
 		<typeAlias alias = "MyAlde" type="bean.Album_Description"/>
+		<typeAlias alias = "Mysode" type="bean.Song_Description"/>
   	</typeAliases>
   	
   	
@@ -19,6 +20,7 @@
 		<mapper resource="mybatis/mapboard.xml"/>
 		<mapper resource="mybatis/mapcomments.xml"/>
 		<mapper resource="mybatis/mapalbum.xml"/>
+		<mapper resource="mybatis/mapsong.xml"/>
   	</mappers>
   	
   </configuration>
